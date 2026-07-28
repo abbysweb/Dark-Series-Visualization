@@ -154,7 +154,7 @@ const NetworkGraph = (() => {
             .attr('class', 'network-node')
             .attr('r', d => d.importantTrigger ? 10 : d.death ? 9 : 7)
             .attr('fill', d => getWorldColor(d.world))
-            .attr('stroke', d => d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(0,0,0,0.5)')
+            .attr('stroke', d => d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(255,255,255,0.4)')
             .attr('stroke-width', d => (d.death || d.importantTrigger) ? 2 : 1)
             .on('mouseover', (ev, d) => showTooltip(ev, d))
             .on('mousemove', (ev) => moveTooltip(ev))

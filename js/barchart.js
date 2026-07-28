@@ -8,8 +8,8 @@ const BarChart = (() => {
     let currentMetric  = 'count';
 
     const CHART_COLORS = [
-        '#ffd700','#3b82f6','#ef4444','#22c55e','#a855f7',
-        '#f97316','#06b6d4','#ec4899','#84cc16','#f59e0b'
+        '#ffd700','#60a5fa','#f87171','#4ade80','#c084fc',
+        '#fb923c','#22d3ee','#f472b6','#a3e635','#fbbf24'
     ];
 
     const initialize = (data) => {

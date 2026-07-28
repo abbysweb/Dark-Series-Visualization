@@ -9,14 +9,14 @@ const KGView = (() => {
 
     // ── Constants ───────────────────────────────────────────────────────────
     const REL_STYLES = {
-        causes:            { color: 'rgba(96,165,250,0.75)',  dash: 'none',    width: 2,   label: 'causes' },
-        appears_in:        { color: 'rgba(120,165,250,0.65)', dash: '6,3',   width: 1.4, label: 'appears in' },
-        occurs_in:         { color: 'rgba(251,146,60,0.7)',  dash: '3,4',   width: 1.4, label: 'occurs in' },
-        occurs_at:         { color: 'rgba(140,155,175,0.5)',dash: '2,5',   width: 1,   label: 'occurs at' },
-        same_person_as:    { color: 'rgba(200,130,255,0.8)', dash: '6,3', width: 2.4, label: 'same person' },
-        co_present_with:   { color: 'rgba(52,211,153,0.6)', dash: '3,4', width: 1,   label: 'co-present' },
-        triggers_death_of: { color: 'rgba(248,113,113,0.85)',   dash: 'none',  width: 2.2, label: 'triggers death' },
-        important_trigger_for: { color: 'rgba(251,191,36,0.8)', dash: 'none', width: 2, label: 'important trigger' }
+        causes:            { color: 'rgba(96,165,250,0.90)',  dash: 'none',    width: 2,   label: 'causes' },
+        appears_in:        { color: 'rgba(120,165,250,0.80)', dash: '6,3',   width: 1.4, label: 'appears in' },
+        occurs_in:         { color: 'rgba(251,146,60,0.85)',  dash: '3,4',   width: 1.4, label: 'occurs in' },
+        occurs_at:         { color: 'rgba(180,190,210,0.7)', dash: '2,5',   width: 1,   label: 'occurs at' },
+        same_person_as:    { color: 'rgba(200,130,255,0.90)', dash: '6,3', width: 2.4, label: 'same person' },
+        co_present_with:   { color: 'rgba(52,211,153,0.75)', dash: '3,4', width: 1,   label: 'co-present' },
+        triggers_death_of: { color: 'rgba(248,113,113,0.95)',   dash: 'none',  width: 2.2, label: 'triggers death' },
+        important_trigger_for: { color: 'rgba(251,191,36,0.92)', dash: 'none', width: 2, label: 'important trigger' }
     };
 
     const WORLD_FILL = {
@@ -27,11 +27,11 @@ const KGView = (() => {
     };
 
     const getWorldFill = (world) => {
-        if (!world) return '#374151';
+        if (!world) return '#4a4a52';
         for (const k of Object.keys(WORLD_FILL)) {
             if (world.includes(k)) return WORLD_FILL[k];
         }
-        return '#374151';
+        return '#4a4a52';
     };
 
     const NODE_STYLE = {
@@ -228,7 +228,7 @@ const KGView = (() => {
             .data(visEdges, d => d.id)
             .enter().append('line')
             .attr('class', 'kg-edge')
-            .attr('stroke', d => REL_STYLES[d.relation]?.color || 'rgba(255,255,255,0.2)')
+            .attr('stroke', d => REL_STYLES[d.relation]?.color || 'rgba(255,255,255,0.40)')
             .attr('stroke-width', d => REL_STYLES[d.relation]?.width || 1)
             .attr('stroke-dasharray', d => REL_STYLES[d.relation]?.dash === 'none' ? null : REL_STYLES[d.relation]?.dash)
             .attr('marker-end', d => `url(#arrow-${d.relation})`)
@@ -237,7 +237,7 @@ const KGView = (() => {
             if (d.relation === 'same_person_as') return 0.9;
             if (d.relation === 'triggers_death_of') return 0.95;
             if (d.relation === 'important_trigger_for') return 0.8;
-            return 0.35;
+            return 0.55;
         });
 
         // ── Node layer ─────────────────────────────────────────────────────
@@ -333,7 +333,7 @@ const KGView = (() => {
         sel.append('circle').attr('r', r)
             .attr('fill', getWorldFill(d.world))
             .attr('fill-opacity', 0.95)
-            .attr('stroke', d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(255,255,255,0.2)')
+            .attr('stroke', d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(255,255,255,0.4)')
             .attr('stroke-width', (d.death || d.importantTrigger) ? 2 : 1.2);
 
         if (d.importantTrigger) {
@@ -377,7 +377,7 @@ const KGView = (() => {
         sel.append('rect')
             .attr('x', -w/2).attr('y', -h/2)
             .attr('width', w).attr('height', h).attr('rx', 8)
-            .attr('fill', 'rgba(156,163,175,0.9)').attr('stroke', 'rgba(156,163,175,0.6)')
+            .attr('fill', 'rgba(180,190,210,0.85)').attr('stroke', 'rgba(200,210,230,0.7)')
             .attr('stroke-width', 1);
         sel.append('text')
             .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')

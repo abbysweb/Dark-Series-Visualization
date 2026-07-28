@@ -4,10 +4,10 @@ const Analytics = (() => {
     let currentMetric = 'distribution';
 
     const COLORS = {
-        Event: '#3b82f6',
+        Event: '#60a5fa',
         Character: '#ffd700',
-        World: '#f97316',
-        TimePeriod: '#6b7280'
+        World: '#fb923c',
+        TimePeriod: '#9ca3af'
     };
 
     const initialize = (data) => {
@@ -193,7 +193,7 @@ const Analytics = (() => {
             .attr('class', 'bar-rect')
             .attr('x', d => x(d.year))
             .attr('width', x.bandwidth())
-            .attr('fill', '#3b82f6')
+            .attr('fill', '#60a5fa')
             .attr('fill-opacity', 0.85)
             .attr('rx', 2)
             .attr('y', cH).attr('height', 0)
@@ -242,7 +242,7 @@ const Analytics = (() => {
             .enter().append('path')
             .attr('d', arc)
             .attr('fill', d => colorScale(d.data.type))
-            .attr('stroke', '#0a0a0f')
+            .attr('stroke', '#0e0b06')
             .attr('stroke-width', 1.5)
             .on('mouseover', function (ev, d) {
                 d3.select(this).transition().duration(200).attr('d', arcHover);
@@ -341,10 +341,10 @@ const Analytics = (() => {
     const renderWorldChart = (g, stats, cW, cH) => {
         const data = getWorldDistribution();
         const colorMap = {
-            'Jonas': '#3b82f6',
-            'Martha': '#ef4444',
-            'Origin': '#f97316',
-            'Origin (End)': '#7c2d12'
+            'Jonas': '#60a5fa',
+            'Martha': '#f87171',
+            'Origin': '#fb923c',
+            'Origin (End)': '#b45309'
         };
 
         const x = d3.scaleBand()
@@ -368,7 +368,7 @@ const Analytics = (() => {
             .attr('class', 'bar-rect')
             .attr('x', d => x(d.world))
             .attr('width', x.bandwidth())
-            .attr('fill', d => colorMap[d.world] || '#6b7280')
+            .attr('fill', d => colorMap[d.world] || '#9ca3af')
             .attr('fill-opacity', 0.85)
             .attr('rx', 2)
             .attr('y', cH).attr('height', 0)
