@@ -65,13 +65,6 @@ Dark Series Visualization/
 ### Dark Series -- Knowledge Graph Visualization
 **Technical Design Report**
 
-Abdullah Al Mamun
-B.Sc. Software Engineering, Daffodil International University
-M.Sc. Software Engineering, TU Wien
-mamun.swe.de@gmail.com
-ORCID: 0009-0006-7473-0024
-July 28, 2026
-
 ### Abstract
 This report documents the architecture, data model, implementation, and recent improvements of the Dark Series Knowledge Graph Visualization - an interactive web application for exploring the temporal, causal, and character-based relationships of the television series *Dark* (Netflix, 2017-2020). The application transforms flat CSV data into a typed Knowledge Graph and provides five coordinated visualization views, each projecting the same underlying graph from a different perspective. This report details the data model, the D3.js-based rendering pipeline, the bug fixes and architectural improvements applied, and guidelines for extending the system.
 
