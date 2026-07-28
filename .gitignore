@@ -1,2 +1,7 @@
 .aider*
 Agents.md
+Report/*.tex
+Report/*.aux
+Report/*.log
+Report/*.out
+Report/*.toc
