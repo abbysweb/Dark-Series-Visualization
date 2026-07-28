@@ -9,49 +9,49 @@ Interactive web application for exploring the temporal, causal, and character-ba
 ### Step 1 — Knowledge Graph (default view)
 The main view. A force-directed graph with 4 node types: **Event** (circles, colored by world), **Character** (diamonds, sized by appearance), **World** (hexagons), and **TimePeriod** (pills). 8 edge types connect them. The left sidebar contains filters, toggles, legend, and the entity inspector panel.
 
-![Knowledge Graph](01-knowledge-graph.png)
+![Knowledge Graph](Screenshot/01-knowledge-graph.png)
 
 ---
 
 ### Step 2 — Temporal Graph
 Swimlane-based timeline where events are grouped into time-boxes (clustered by year proximity). Smooth Bezier curves show causal transitions between events across adjacent time windows.
 
-![Temporal Graph](02-temporal.png)
+![Temporal Graph](Screenshot/02-temporal.png)
 
 ---
 
 ### Step 3 — Network Graph
 Event-centric force layout. Events are linked when they share one or more characters. Node size encodes importance (number of connected events). Filterable by world and event type.
 
-![Network Graph](03-network.png)
+![Network Graph](Screenshot/03-network.png)
 
 ---
 
 ### Step 4 — Bar Chart
 Grouped vertical bars with configurable grouping (by **year**, **world**, or **top characters**) and selectable metrics (**event count**, **death events**, **important triggers**). Animated D3 transitions on filter change.
 
-![Bar Chart](04-barchart.png)
+![Bar Chart](Screenshot/04-barchart.png)
 
 ---
 
 ### Step 5 — Analytics Dashboard
 Summary dashboard showing 7 key stat cards (total events, characters, worlds, deaths, triggers, etc.) plus 4 chart types: events-by-year bar, edge-type donut, top-20 character involvement bar, and events-by-world distribution pie.
 
-![Analytics Dashboard](05-analytics.png)
+![Analytics Dashboard](Screenshot/05-analytics.png)
 
 ---
 
 ### Step 6 — Chord Diagram
 Character co-occurrence chord diagram. The top 14 most frequent characters are shown as arc segments around the circle. Ribbons between arcs represent events where both characters appear — thicker ribbons mean more co-occurrences. Hover over an arc to see total co-occurrences, or hover a ribbon for the specific pair count.
 
-![Chord Diagram](07-chord.png)
+![Chord Diagram](Screenshot/07-chord.png)
 
 ---
 
 ### Step 7 — Timeline
 Beeswarm-per-lane layout across World bands covering 1885--2056. Each row is a world (Jonas, Martha, Origin). Dots are events — click any dot to see details in the bottom detail panel. Filterable by character, event type, and world.
 
-![Timeline](06-timeline.png)
+![Timeline](Screenshot/06-timeline.png)
 
 ---
 
