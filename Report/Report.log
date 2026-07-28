@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.28)  28 JUL 2026 15:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.28)  28 JUL 2026 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -523,8 +523,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [4{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 178.
+<../Screenshot/01-knowledge-graph.png, id=230, 1927.2pt x 1084.05pt>
+File: ../Screenshot/01-knowledge-graph.png Graphic file (type png)
+<use ../Screenshot/01-knowledge-graph.png>
+Package pdftex.def Info: ../Screenshot/01-knowledge-graph.png  used on input li
+ne 182.
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-84.
+90.
 
 (C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -536,7 +542,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[5{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.206 \end{itemize}
+                   {C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <../
+Screenshot/01-knowledge-graph.png (PNG copy)>]
+<../Screenshot/02-temporal.png, id=239, 1927.2pt x 1084.05pt>
+File: ../Screenshot/02-temporal.png Graphic file (type png)
+<use ../Screenshot/02-temporal.png>
+Package pdftex.def Info: ../Screenshot/02-temporal.png  used on input line 222.
+
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+<../Screenshot/03-network.png, id=240, 1927.2pt x 1084.05pt>
+File: ../Screenshot/03-network.png Graphic file (type png)
+<use ../Screenshot/03-network.png>
+Package pdftex.def Info: ../Screenshot/03-network.png  used on input line 232.
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -544,7 +569,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[6]
+[6
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.235 
+       <../Screenshot/02-temporal.png (PNG copy)>]
+<../Screenshot/04-barchart.png, id=246, 1927.2pt x 1084.05pt>
+File: ../Screenshot/04-barchart.png Graphic file (type png)
+<use ../Screenshot/04-barchart.png>
+Package pdftex.def Info: ../Screenshot/04-barchart.png  used on input line 242.
+
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -552,15 +590,96 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[7]
-Overfull \hbox (41.87367pt too wide) in paragraph at lines 290--291
+[7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.245 
+       <../Screenshot/03-network.png (PNG copy)>]
+<../Screenshot/07-chord.png, id=253, 1927.2pt x 1084.05pt>
+File: ../Screenshot/07-chord.png Graphic file (type png)
+<use ../Screenshot/07-chord.png>
+Package pdftex.def Info: ../Screenshot/07-chord.png  used on input line 252.
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.257 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.257 
+       <../Screenshot/04-barchart.png (PNG copy)> <../Screenshot/07-chord.png (
+PNG copy)>]
+<../Screenshot/05-analytics.png, id=260, 1927.2pt x 1084.05pt>
+File: ../Screenshot/05-analytics.png Graphic file (type png)
+<use ../Screenshot/05-analytics.png>
+Package pdftex.def Info: ../Screenshot/05-analytics.png  used on input line 262
+.
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+<../Screenshot/06-timeline.png, id=261, 1927.2pt x 1084.05pt>
+File: ../Screenshot/06-timeline.png Graphic file (type png)
+<use ../Screenshot/06-timeline.png>
+Package pdftex.def Info: ../Screenshot/06-timeline.png  used on input line 279.
+
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.282 
+       <../Screenshot/05-analytics.png (PNG copy)>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.307 
+       <../Screenshot/06-timeline.png (PNG copy)>]
+Overfull \hbox (41.87367pt too wide) in paragraph at lines 341--342
 \T1/lmr/m/n/10.95 The BFS shortest-path al-go-rithm was ex-tracted from \T1/lmt
 t/m/n/10.95 kg_builder.js \T1/lmr/m/n/10.95 into a ded-i-cated \T1/lmtt/m/n/10.
 95 kg_pathfinder.js
  []
 
 
-Overfull \hbox (11.86423pt too wide) in paragraph at lines 296--297
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[11]
+Overfull \hbox (11.86423pt too wide) in paragraph at lines 347--348
 \T1/lmr/m/n/10.95 The colour scheme is ex-clu-sively light-themed: dark theme w
 as re-moved en-tirely (\T1/lmtt/m/n/10.95 theme-toggle.js
  []
@@ -572,7 +691,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[8]
+[12]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -580,8 +699,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[9]
-Overfull \hbox (34.19066pt too wide) in paragraph at lines 356--357
+[13]
+Overfull \hbox (34.19066pt too wide) in paragraph at lines 407--408
 \T1/lmr/m/n/10.95 specific charge strengths (World nodes re-pel strongly, Char-
 ac-ters mod-er-ately, Events/TimePeriods
  []
@@ -593,22 +712,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[10] (Report.aux)
+[14] (Report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 6E8CE04ACBA567F61ED6FAB6EBB1D55F;7011.
+(rerunfilecheck)             Checksum: 1D875C60B19099B19D758E3E0640FB89;7188.
  ) 
 Here is how much of TeX's memory you used:
- 12410 strings out of 467871
- 188733 string characters out of 5428452
- 646942 words of memory out of 5000000
- 41049 multiletter control sequences out of 15000+600000
+ 12477 strings out of 467871
+ 190724 string characters out of 5428452
+ 635946 words of memory out of 5000000
+ 41104 multiletter control sequences out of 15000+600000
  689548 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,1004b,1231s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,1004b,2063s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
 lic/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/P
@@ -617,9 +736,9 @@ ts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lm
 sy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Program 
 Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX/fonts/ty
 pe1/public/lm/lmtt9.pfb>
-Output written on Report.pdf (10 pages, 325120 bytes).
+Output written on Report.pdf (14 pages, 2149706 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 81 named destinations out of 1000 (max. 500000)
- 297 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 382 PDF objects out of 1000 (max. 8388607)
+ 93 named destinations out of 1000 (max. 500000)
+ 340 words of extra memory for PDF output out of 10000 (max. 10000000)
 

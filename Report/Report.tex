@@ -177,6 +177,12 @@ This correctly links all Dark identity pairs: Jonas/Adam, Mikkel/Michael, Martha
 
 \subsection{Knowledge Graph (\texttt{kg\_view.js})}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/01-knowledge-graph.png}
+\caption{Knowledge Graph view showing typed nodes and causal edges}
+\end{figure}
+
 The primary view renders a D3 force-directed graph with the following visual encodings:
 
 \textbf{Nodes:}
@@ -210,18 +216,53 @@ The primary view renders a D3 force-directed graph with the following visual enc
 \end{itemize}
 
 \subsection{Temporal Graph (\texttt{visualisation.js})}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/02-temporal.png}
+\caption{Temporal Graph with swimlanes and causal Bezier curves}
+\end{figure}
+
 Renders events as a sequence of temporal boxes with embedded swimlanes for Jonas, Martha, and Other characters. Smooth quadratic Bezier curves connect events across adjacent time boxes.
 
 \subsection{Force Network (\texttt{network.js})}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/03-network.png}
+\caption{Force Network showing event interconnectedness via shared characters}
+\end{figure}
+
 An event-centric force layout linking events that share characters. Node size encodes importance (triggers = 10px, deaths = 9px, regular = 7px). Edge weight reflects the number of shared characters.
 
 \subsection{Bar Chart (\texttt{barchart.js})}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/04-barchart.png}
+\caption{Bar Chart with configurable grouping and metrics}
+\end{figure}
+
 Grouped vertical bars with configurable grouping (year, world, top-25 characters) and metrics (total count, death events, or trigger events). Animated entry with D3 transitions.
 
 \subsection{Chord Diagram (\texttt{chord.js})}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/07-chord.png}
+\caption{Chord Diagram showing character co-occurrence relationships}
+\end{figure}
+
 A circular chord layout showing character co-occurrence across events. The top 14 most frequent characters are displayed as arc segments around the circumference. Coloured ribbons between arcs represent events where both characters appear together --- ribbon thickness is proportional to the co-occurrence count. The diagram uses D3's \texttt{d3.chord()} layout with \texttt{blendMode="multiply"} for correct colour compositing on the light theme background. Hovering an arc highlights all ribbons originating from that character and displays a tooltip with total co-occurrence count; hovering a specific ribbon shows the exact pair count. The chord diagram adds a character-centric relational perspective complementing the event- and time-oriented views.
 
 \subsection{Analytics Dashboard (\texttt{analytics\_dashboard.js})}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/05-analytics.png}
+\caption{Analytics Dashboard with stat cards and distribution charts}
+\end{figure}
+
 The Analytics view provides a summary dashboard at the top showing seven key metrics rendered as stat cards: total number of events, total edges, distinct characters, distinct worlds, distinct years, death events, and important-trigger events. Below the stats bar, the main chart area renders a configurable visualization with four selectable metrics via a dropdown:
 \begin{itemize}[nosep]
     \item \textbf{Events by Year} --- a bar chart showing event density per year across the full 1885--2056 span. Tooltips display exact counts on hover.
@@ -230,6 +271,16 @@ The Analytics view provides a summary dashboard at the top showing seven key met
     \item \textbf{Events by World} --- a bar chart showing event distribution across Jonas World, Martha World, and Origin World with world-specific color coding.
 \end{itemize}
 All charts use animated D3 transitions for entry and update, with the same glassmorphic light theme and tooltip system as the other views.
+
+\subsection{Timeline (\texttt{timeline.js})}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../Screenshot/06-timeline.png}
+\caption{Timeline with beeswarm layout across World bands}
+\end{figure}
+
+A horizontal beeswarm-per-lane layout with World bands (Jonas, Martha, Origin) spanning 1885--2056. Events are positioned along the X-axis by their year, with Y-offset jitter within each lane to prevent occlusion. Each dot is colour-coded by world. Clicking any event dot opens a detail panel at the bottom showing the event's description, associated characters, and causal links. The view is filterable by character, event type, and world through the sidebar controls.
 
 \section{Technical Implementation Details}
 
@@ -359,6 +410,6 @@ Each view was designed to serve a distinct analytical purpose:
 
 \section{Conclusion}
 
-The Dark Series Knowledge Graph Visualization successfully transforms flat CSV data into a rich, interactive graph exploration experience. The Knowledge Graph serves as a unified data backbone for six distinct visualization views plus an Analytics dashboard, enabling users to explore character relationships, causal chains, and temporal patterns of the series from multiple complementary perspectives. The improvements documented in this report --- identity detection fix, D3 mutation protection, the \texttt{important\_trigger\_for} relation type, and the pathfinding module extraction --- collectively improve correctness, robustness, and maintainability of the codebase.
+The Dark Series Knowledge Graph Visualization successfully transforms flat CSV data into a rich, interactive graph exploration experience. The Knowledge Graph serves as a unified data backbone for seven distinct visualization views including an Analytics dashboard, enabling users to explore character relationships, causal chains, and temporal patterns of the series from multiple complementary perspectives. The improvements documented in this report --- identity detection fix, D3 mutation protection, the \texttt{important\_trigger\_for} relation type, and the pathfinding module extraction --- collectively improve correctness, robustness, and maintainability of the codebase.
 
 \end{document}
