@@ -2,7 +2,7 @@
 
 Interactive web application for exploring the temporal, causal, and character-based relationships of the television series *Dark* (Netflix, 2017--2020). Transforms flat CSV data into a typed Knowledge Graph and provides six coordinated visualization views.
 
----
+
 
 ## Author
 **Abdullah Al Mamun**  
