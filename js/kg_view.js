@@ -33,8 +33,8 @@ const KGView = (() => {
     };
 
     const NODE_STYLE = {
-        Event:       { baseR: 6,  importantR: 10, deathR: 9,  color: null /* world-based */ },
-        Character:   { baseSize: 546, maxSize: 1820 },   // d3.symbol size (area)
+        Event:       { baseR: 7,  importantR: 11, deathR: 10, color: null /* world-based */ },
+        Character:   { baseSize: 900, maxSize: 3400 },   // d3.symbol size (area)
         World:       { r: 28 },
         TimePeriod:  { w: 38, h: 18 }
     };
@@ -278,12 +278,12 @@ const KGView = (() => {
     // ── Node drawing helpers ─────────────────────────────────────────────────
     const drawCharacter = (sel, d) => {
         const maxCount = d3.max(kg.byType.characters, c => c.eventCount) || 1;
-        const size = 546 + (d.eventCount / maxCount) * 1274;
+        const size = 900 + (d.eventCount / maxCount) * 2500;
         const r = Math.sqrt(size / Math.PI);
 
         sel.append('rect')
-            .attr('width', r * 1.9).attr('height', r * 1.9)
-            .attr('x', -r * 0.95).attr('y', -r * 0.95)
+            .attr('width', r * 2.2).attr('height', r * 2.2)
+            .attr('x', -r * 1.1).attr('y', -r * 1.1)
             .attr('transform', 'rotate(45)')
             .attr('fill', d.worldSuffix === 'M' ? 'rgba(239,68,68,0.88)' :
                           d.worldSuffix === 'J' ? 'rgba(59,130,246,0.88)' : 'rgba(249,115,22,0.88)')
@@ -291,7 +291,7 @@ const KGView = (() => {
             .attr('stroke-width', d.hasIdentity ? 2.5 : 1.2)
             .attr('rx', 4);
 
-        const fontSize = Math.max(9, Math.min(13, r * 0.55));
+        const fontSize = Math.max(10, Math.min(16, r * 0.65));
         const label = d.label.length > 18 ? d.label.slice(0, 16) + '…' : d.label;
 
         sel.append('text')
@@ -397,7 +397,7 @@ const KGView = (() => {
 const collideR = (d) => {
     if (d.type === 'Character') {
         const maxCount = d3.max(kg.byType.characters, c => c.eventCount) || 1;
-        const area = 546 + (d.eventCount / maxCount) * 1274;
+        const area = 900 + (d.eventCount / maxCount) * 2500;
         return Math.sqrt(area / Math.PI) * 0.85 + 5;
     }
     if (d.type === 'World')      return 32;
