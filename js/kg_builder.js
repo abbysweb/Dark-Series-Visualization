@@ -61,26 +61,33 @@ const KGBuilder = (() => {
         };
 
         // ── 1. World nodes ──────────────────────────────────────────────────
-        const worldNames = [...new Set(events.map(e => e.world).filter(Boolean))];
+        const worldCounts = new Map();
+        const yearCounts = new Map();
+        events.forEach(e => {
+            if (e.world) worldCounts.set(e.world, (worldCounts.get(e.world) || 0) + 1);
+            yearCounts.set(e.year, (yearCounts.get(e.year) || 0) + 1);
+        });
+
+        const worldNames = [...worldCounts.keys()];
         worldNames.forEach(w => {
             addNode({
                 id:    `world:${w}`,
                 type:  TYPE.WORLD,
                 label: w,
                 name:  w,
-                eventCount: events.filter(e => e.world === w).length
+                eventCount: worldCounts.get(w)
             });
         });
 
         // ── 2. TimePeriod nodes (one per unique year) ───────────────────────
-        const years = [...new Set(events.map(e => e.year))].sort((a, b) => a - b);
+        const years = [...yearCounts.keys()].sort((a, b) => a - b);
         years.forEach(y => {
             addNode({
                 id:    `time:${y}`,
                 type:  TYPE.TIME_PERIOD,
                 label: String(y),
                 year:  y,
-                eventCount: events.filter(e => e.year === y).length
+                eventCount: yearCounts.get(y)
             });
         });
 

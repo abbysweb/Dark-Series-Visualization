@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Theme Toggle Button Styles - Dark Series Knowledge Graph Visualization
+   ========================================================================== */
+
+.theme-toggle {
+    margin-left: auto;
+    flex-shrink: 0;
+    padding-right: 16px;
+}
+
+.theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all var(--transition);
+    color: var(--text-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(96,165,250,0.1) 0%, rgba(251,191,36,0.1) 100%);
+    opacity: 0;
+    transition: opacity var(--transition);
+    border-radius: var(--radius);
+}
+
+.theme-toggle-btn:hover::before {
+    opacity: 1;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--bg-card);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.theme-toggle-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--accent-dim);
+}
+
+.theme-toggle-icon {
+    font-size: 18px;
+    line-height: 1;
+    z-index: 1;
+    position: relative;
+}
+
+.theme-toggle-icon::before {
+    content: attr(data-icon);
+}
+
+/* Dark and Light theme specific adjustments */
+body.dark-theme .theme-toggle-btn .theme-toggle-icon::before {
+    content: '🌙';
+}
+
+body.light-theme .theme-toggle-btn .theme-toggle-icon::before {
+    content: '☀️';
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .theme-toggle-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .theme-toggle-icon {
+        font-size: 16px;
+    }
+}

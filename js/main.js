@@ -1,19 +1,13 @@
-/**
- * Main — Dark Series Knowledge Graph Visualization
- * Boot order: DataParser → KGBuilder → KGView (primary)
- * All 5 views share the same CSV data; KG views share the kg object.
- */
-
 // ── View Manager ─────────────────────────────────────────────────────────────
 const ViewManager = (() => {
     const VIEWS = ['kg', 'temporal', 'network', 'barchart', 'analytics', 'timeline'];
     let activeView       = 'kg';
     let initializedViews = new Set();
-    let sharedData       = null;   // raw CSV data
-    let sharedKG         = null;   // built knowledge graph
+    let sharedData       = null;
+    let sharedKG         = null;
 
     const viewInitializers = {
-        kg:       () => {
+        kg:        () => {
             KGView.initialize(sharedKG);
             KGSearch.initialize(sharedKG);
         },
@@ -28,7 +22,6 @@ const ViewManager = (() => {
         if (viewId === activeView && initializedViews.has(viewId)) return;
         activeView = viewId;
 
-        // Toggle panels + tabs
         VIEWS.forEach(v => {
             document.getElementById(`view-${v}`)?.classList.toggle('active', v === viewId);
             const tab = document.getElementById(`tab-${v}`);
@@ -38,18 +31,15 @@ const ViewManager = (() => {
             }
         });
 
-        // Temporal-only header controls
-        const legend    = document.getElementById('temporal-legend');
-        const resetBtn  = document.getElementById('reset-zoom');
-        const focusBtn  = document.getElementById('kg-focus-mode');
+        const legend   = document.getElementById('temporal-legend');
+        const resetBtn = document.getElementById('reset-zoom');
+        const focusBtn = document.getElementById('kg-focus-mode');
         if (legend)   legend.style.display  = viewId === 'temporal' ? 'flex'  : 'none';
         if (resetBtn) resetBtn.style.display = viewId === 'temporal' ? 'block' : 'none';
         if (focusBtn) focusBtn.style.display = viewId === 'kg'       ? 'block' : 'none';
 
-        // Lazy initialize each view on first visit
         if (!initializedViews.has(viewId)) {
             initializedViews.add(viewId);
-            // Small delay so the panel is visible and has layout dimensions
             setTimeout(() => viewInitializers[viewId]?.(), 60);
         }
     };
@@ -66,7 +56,6 @@ const ViewManager = (() => {
     const boot = (data, kg) => {
         sharedData = data;
         sharedKG   = kg;
-        // Mark KG as the first initialized view and kick it off
         initializedViews.add('kg');
         viewInitializers.kg();
     };
@@ -81,21 +70,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ViewManager.bindTabs();
 
-    // 1. Load CSV data
     DataParser.loadData()
         .then(data => {
-            // Update loading text before KG build (can take a moment)
             const loadingText = document.querySelector('.loading-text');
             if (loadingText) loadingText.textContent = 'Building Knowledge Graph…';
 
-            // 2. Build KG from CSV data (synchronous)
             const kg = KGBuilder.build(data);
 
-            // 3. Hide overlay
             overlay.classList.add('hidden');
             setTimeout(() => { overlay.style.display = 'none'; }, 500);
 
-            // 4. Boot all views with shared data
             ViewManager.boot(data, kg);
         })
         .catch(err => {
@@ -106,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         ⚠️ Failed to load data files.<br>
                         <span style="font-size:12px;color:var(--text-muted)">
                             ${err.message}<br><br>
-                            Make sure you are opening the project via a local server.<br>
-                            The server should be running at <strong>http://127.0.0.1:3000</strong>
+                            Make sure the server is running at
+                            <strong>http://127.0.0.1:3000</strong>
                         </span>
                     </p>
                 </div>`;

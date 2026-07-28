@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="config/theme-toggle.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -19,9 +20,9 @@
         <div class="brand">
             <div class="brand-icon">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <circle cx="14" cy="14" r="13" stroke="#ffd700" stroke-width="1.5"/>
-                    <path d="M14 4 Q20 14 14 24 Q8 14 14 4Z" fill="#ffd700" fill-opacity="0.25" stroke="#ffd700" stroke-width="1"/>
-                    <circle cx="14" cy="14" r="3" fill="#ffd700"/>
+                    <circle cx="14" cy="14" r="13" stroke="var(--accent)" stroke-width="1.5"/>
+                    <path d="M14 4 Q20 14 14 24 Q8 14 14 4Z" fill="var(--accent)" fill-opacity="0.25" stroke="var(--accent)" stroke-width="1"/>
+                    <circle cx="14" cy="14" r="3" fill="var(--accent)"/>
                 </svg>
             </div>
             <div class="brand-text">
@@ -51,6 +52,14 @@
                 <span class="tab-icon">◈</span><span class="tab-label">Timeline</span>
             </button>
         </nav>
+
+        <!-- Theme Toggle -->
+        <div class="theme-toggle">
+            <button class="theme-toggle-btn" id="theme-toggle-btn"
+                    title="Toggle theme" aria-label="Toggle theme">
+                <span class="theme-toggle-icon" data-icon=""></span>
+            </button>
+        </div>
 
         <!-- Temporal-only controls -->
         <div class="legend" id="temporal-legend" style="display:none">
@@ -127,6 +136,17 @@
                     <div class="kg-legend-item"><div class="kg-legend-circle" style="background:#374151;border:2px solid #a855f7;width:10px;height:10px"></div> Death Event</div>
                     <div class="kg-legend-item"><div class="kg-legend-circle" style="background:#374151;border:2px solid #a855f7;border-style:dashed;width:10px;height:10px"></div> Identity Link</div>
                 </div>
+
+                <!-- INSPECTOR embedded in sidebar -->
+                <div class="kg-sidebar-inspector" id="kg-sidebar-inspector">
+                    <div class="kg-sidebar-inspector-header">
+                        <span class="kg-sidebar-inspector-title">Entity Inspector</span>
+                        <button id="kg-inspector-close" class="kg-inspector-close" title="Close">✕</button>
+                    </div>
+                    <div id="kg-inspector-content">
+                        <p class="kg-inspector-hint">Click any node to inspect it</p>
+                    </div>
+                </div>
             </aside>
 
             <!-- CENTER: Main graph -->
@@ -158,17 +178,6 @@
                 <div id="kg-container">
                     <svg id="kg-graph"></svg>
                     <div id="kg-tooltip" class="tooltip"></div>
-                </div>
-            </div>
-
-            <!-- RIGHT PANEL: Inspector -->
-            <div class="kg-inspector" id="kg-inspector">
-                <div class="kg-inspector-header">
-                    <span class="kg-inspector-title">Entity Inspector</span>
-                    <button id="kg-inspector-close" class="kg-inspector-close" title="Close">✕</button>
-                </div>
-                <div id="kg-inspector-content">
-                    <p class="kg-inspector-hint">Click any node to inspect it</p>
                 </div>
             </div>
 
@@ -319,19 +328,22 @@
     </div>
 </div>
 
-<!-- ===== SCRIPTS ===== -->
+<!-- ===== SCRIPTS (order matters) ===== -->
 <script src="js/data_parser.js"></script>
 <script src="js/layout_logic.js"></script>
 <script src="js/visualisation.js"></script>
 <script src="js/network.js"></script>
 <script src="js/barchart.js"></script>
+<script src="js/analytics.js"></script>
 <script src="js/timeline.js"></script>
 <script src="js/kg_builder.js"></script>
 <script src="js/kg_inspector.js"></script>
 <script src="js/kg_search.js"></script>
-<script src="js/analytics.js"></script>
 <script src="js/kg_pathfinder.js"></script>
 <script src="js/kg_view.js"></script>
+<!-- Theme system must load before main.js -->
+<script src="config/theme-config.js"></script>
+<script src="config/theme-toggle.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

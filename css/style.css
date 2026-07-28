@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Dark Series Visualization — Unified Stylesheet (White Theme)
+   Dark Series Visualization — Unified Stylesheet (Theme-based)
    ========================================================================== */
 
 /* ── Google Font ── */
@@ -7,38 +7,45 @@
 
 /* ── Design Tokens ── */
 :root {
-    --bg:            #f8f9fb;
-    --bg-card:       #ffffff;
-    --bg-card-grad:  linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-    --bg-elevated:   #ffffff;
-    --bg-sidebar:    #f5f3f8;
-    --bg-header:     #ffffff;
-
-    --border:        rgba(29,78,216,0.08);
-    --border-hover:  rgba(29,78,216,0.12);
-
-    --text-primary:   #1a1a2e;
-    --text-secondary:  #555570;
-    --text-muted:      #8888a0;
-
-    --accent:         #2563eb;
-    --accent-dim:    rgba(96,165,250,0.15);
-    --accent-glow:   rgba(96,165,250,0.4);
-
-    --jonas:    #2563eb;
-    --martha:   #dc2626;
-    --origin:   #ea580c;
-    --other:    #16a34a;
-    --death:    #9333ea;
-    --trigger:  #ca8a04;
-
     --header-h:   60px;
     --radius:     8px;
     --radius-lg:  12px;
-    --shadow:     0 4px 20px rgba(29,78,216,0.08), 0 1px 4px rgba(0,0,0,0.06);
-    --shadow-sm:  0 1px 4px rgba(0,0,0,0.06);
-
     --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Legacy token defaults for backward compatibility during initialization */
+:root {
+    --bg:            #0c0e1a;
+    --bg-card:       #14172a;
+    --bg-card-grad:  linear-gradient(180deg, #14172a 0%, #14172a 100%);
+    --bg-elevated:   #14172a;
+    --bg-sidebar:    #0a0d1e;
+    --bg-header:     #14172a;
+    --text-primary:   #f0f4ff;
+    --text-secondary:  #9ca3af;
+    --text-muted:      #6b7280;
+    --accent:         #60a5fa;
+    --accent-dim:    rgba(96,165,250,0.15);
+    --accent-glow:   rgba(96,165,250,0.4);
+    --jonas:    #60a5fa;
+    --martha:   #f87171;
+    --origin:   #fb923c;
+    --other:    #4ade80;
+    --death:    #c084fc;
+    --trigger:  #fbbf24;
+    --border:        rgba(255,255,255,0.06);
+    --border-hover:  rgba(255,255,255,0.12);
+    --gradient-1: #0c0e1a;
+    --gradient-2: #10132a;
+    --gradient-3: #14172a;
+    --shadow:     0 4px 20px rgba(96,165,250,0.08), 0 1px 4px rgba(0,0,0,0.2);
+    --shadow-sm:  0 1px 4px rgba(0,0,0,0.3);
+    --tooltip-bg: rgba(20,23,42,0.97);
+    --tooltip-border: rgba(96,165,250,0.2);
+    --input-bg: #14172a;
+    --input-border: rgba(96,165,250,0.2);
+    --scrollbar-thumb: rgba(96,165,250,0.15);
+    --scrollbar-track: transparent;
 }
 
 /* ── Reset ── */
@@ -54,11 +61,12 @@ html, body {
 
 body {
     font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(160deg, #0c0e1a 0%, #10132a 30%, #14172a 60%, #0c0e1a 100%);
+    background: linear-gradient(160deg, var(--gradient-1) 0%, var(--gradient-2) 30%, var(--gradient-3) 60%, var(--gradient-1) 100%);
     background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.6;
     font-size: 14px;
+    transition: background-color var(--transition), color var(--transition);
 }
 
 /* ==========================================================================
@@ -748,13 +756,15 @@ body {
 
 /* ── Left Sidebar ── */
 .kg-sidebar {
-    width: 200px;
+    width: 280px;
     flex-shrink: 0;
     background: linear-gradient(180deg, #0a0d1e 0%, #0f1228 100%);
     border-right: 1px solid rgba(29,78,216,0.08);
     overflow-y: auto;
     padding: 10px 0;
     box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
 }
 
 .kg-sidebar-section {

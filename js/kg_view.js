@@ -20,15 +20,17 @@ const KGView = (() => {
     };
 
     const WORLD_FILL = {
-        Jonas:          '#60a5fa',
-        Martha:         '#f87171',
-        Origin:         '#fb923c',
-        'Origin (End)': '#fdba74'
+        Jonas:          'var(--jonas)',
+        Martha:         'var(--martha)',
+        Origin:         'var(--origin)',
+        'Origin (End)': 'rgba(255,219,116,0.9)'
     };
 
     const getWorldFill = (world) => {
         if (!world) return '#374151';
-        for (const k of Object.keys(WORLD_FILL)) if (world.includes(k)) return WORLD_FILL[k];
+        for (const k of Object.keys(WORLD_FILL)) {
+            if (world.includes(k)) return WORLD_FILL[k];
+        }
         return '#374151';
     };
 
@@ -61,6 +63,7 @@ const KGView = (() => {
         setupZoom();
         setupMarkers();
         buildSidebar();
+        bindBackgroundClick();
         render();
 
         window.addEventListener('resize', () => {
@@ -70,6 +73,7 @@ const KGView = (() => {
             }
         });
     };
+
 
     const updateDimensions = () => {
         const el = document.getElementById('kg-container');
@@ -285,15 +289,27 @@ const KGView = (() => {
         const size = 900 + countFactor * 2000 + textFactor * 800;
         const r = Math.sqrt(size / Math.PI);
 
+        // Background glow behind character diamond
+        sel.append('circle')
+            .attr('r', r * 1.8)
+            .attr('fill', d.worldSuffix === 'M' ? 'rgba(248,113,113,0.1)' :
+                         d.worldSuffix === 'J' ? 'rgba(96,165,250,0.1)' : 'rgba(251,146,60,0.1)')
+            .attr('stroke', d.worldSuffix === 'M' ? 'rgba(248,113,113,0.25)' :
+                            d.worldSuffix === 'J' ? 'rgba(96,165,250,0.25)' : 'rgba(251,146,60,0.25)')
+            .attr('stroke-width', 1.5)
+            .attr('filter', 'url(#node-shadow)')
+            .lower();
+
         sel.append('rect')
             .attr('width', r * 2.2).attr('height', r * 2.2)
             .attr('x', -r * 1.1).attr('y', -r * 1.1)
             .attr('transform', 'rotate(45)')
             .attr('fill', d.worldSuffix === 'M' ? 'rgba(248,113,113,0.9)' :
                           d.worldSuffix === 'J' ? 'rgba(96,165,250,0.9)' : 'rgba(251,146,60,0.9)')
-            .attr('stroke', '#d97706')
-            .attr('stroke-width', d.hasIdentity ? 2.5 : 1.2)
-            .attr('rx', 4);
+            .attr('stroke', d.worldSuffix === 'M' ? 'var(--death)' : d.worldSuffix === 'J' ? 'var(--jonas)' : 'var(--origin)')
+            .attr('stroke-width', d.hasIdentity ? 3 : 1.5)
+            .attr('rx', 4)
+            .attr('filter', 'url(#node-shadow)');
 
         const fontSize = Math.max(10, Math.min(16, r * 0.65));
         const label = d.label.length > 22 ? d.label.slice(0, 20) + '…' : d.label;
@@ -302,13 +318,13 @@ const KGView = (() => {
             .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
             .attr('font-size', fontSize)
             .attr('font-family', 'Outfit, sans-serif').attr('font-weight', '600')
-            .attr('fill', '#fff').attr('pointer-events', 'none')
+            .attr('fill', 'var(--text-primary)').attr('pointer-events', 'none')
             .text(label);
 
         if (d.hasIdentity) {
             sel.append('circle').attr('r', 4.5).attr('cx', 0)
                 .attr('cy', -(r * 0.95 + 6))
-                .attr('fill', '#a855f7').attr('pointer-events', 'none');
+                .attr('fill', 'var(--accent)').attr('pointer-events', 'none');
         }
     };
 
@@ -317,7 +333,7 @@ const KGView = (() => {
         sel.append('circle').attr('r', r)
             .attr('fill', getWorldFill(d.world))
             .attr('fill-opacity', 0.95)
-            .attr('stroke', d.death ? '#c084fc' : d.importantTrigger ? '#fbbf24' : 'rgba(255,255,255,0.2)')
+            .attr('stroke', d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(255,255,255,0.2)')
             .attr('stroke-width', (d.death || d.importantTrigger) ? 2 : 1.2);
 
         if (d.importantTrigger) {
