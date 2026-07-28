@@ -105,4 +105,11 @@ Academic project.
 
 ## Report
 
-A full technical design report is available in `Report/Report.tex` (LaTeX source) and `Report/Report.pdf` (compiled). It covers the architecture, data model, implementation details, bug fixes, and design decisions.
+A full technical design report (`Report/Report.tex`, compiled as `Report/Report.pdf`) documents the architecture, data model, implementation, and recent improvements. Key highlights:
+
+- **Overview** — Single-page app with vanilla JS and D3.js v7; transforms two CSV files (~340 events, ~590 edges) into a typed Knowledge Graph with 4 node types and 8 edge types
+- **Architecture** — Flat client-side structure with modular IIFE pattern; boot pipeline: `DataParser.loadData()` -> `KGBuilder.build()` -> `ViewManager.boot()`
+- **Data Model** — Node types (Event/Circle, Character/Diamond, World/Hexagon, TimePeriod/Pill) and edge types (`causes`, `appears_in`, `occurs_in`, `occurs_at`, `same_person_as`, `co_present_with`, `triggers_death_of`, `important_trigger_for`)
+- **View Implementations** — Knowledge Graph (D3 force-directed), Temporal Graph (swimlane timeline), Force Network (event co-occurrence), Bar Chart (grouped metrics), Analytics Dashboard (4 chart types), Timeline (beeswarm layout)
+- **Improvements** — Identity detection fix (two-tier matching by surname overlap + `/` splitting), D3 edge mutation protection via persistent `sourceId`/`targetId`, new `important_trigger_for` relation type, BFS `kg_pathfinder.js` module extraction
+- **Design Decisions** — Static layout (simulation stops at 600ms), white theme for readability, larger character diamonds (546–1820 area range), improved identity detection for Dark dual-identity pairs
