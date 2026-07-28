@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dark Series Knowledge Graph — Explore characters, events, worlds and causal chains of the Dark TV series as an interactive knowledge graph.">
+    <title>Dark Series — Knowledge Graph</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <div class="brand-icon">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <circle cx="14" cy="14" r="13" stroke="#ffd700" stroke-width="1.5"/>
+                    <path d="M14 4 Q20 14 14 24 Q8 14 14 4Z" fill="#ffd700" fill-opacity="0.25" stroke="#ffd700" stroke-width="1"/>
+                    <circle cx="14" cy="14" r="3" fill="#ffd700"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-title">DARK</span>
+                <span class="brand-subtitle">Knowledge Graph</span>
+            </div>
+        </div>
+
+        <!-- NAV TABS -->
+        <nav id="main-nav" aria-label="Visualization views">
+            <button class="nav-tab active" data-view="kg"       id="tab-kg"       aria-selected="true">
+                <span class="tab-icon">⬡</span><span class="tab-label">Knowledge Graph</span>
+            </button>
+            <button class="nav-tab" data-view="temporal"  id="tab-temporal"  aria-selected="false">
+                <span class="tab-icon">▤</span><span class="tab-label">Temporal</span>
+            </button>
+            <button class="nav-tab" data-view="network"   id="tab-network"   aria-selected="false">
+                <span class="tab-icon">✦</span><span class="tab-label">Network</span>
+            </button>
+            <button class="nav-tab" data-view="barchart"  id="tab-barchart"  aria-selected="false">
+                <span class="tab-icon">▮</span><span class="tab-label">Bar Chart</span>
+            </button>
+            <button class="nav-tab" data-view="analytics"  id="tab-analytics"  aria-selected="false">
+                <span class="tab-icon">▦</span><span class="tab-label">Analytics</span>
+            </button>
+            <button class="nav-tab" data-view="timeline"  id="tab-timeline"  aria-selected="false">
+                <span class="tab-icon">◈</span><span class="tab-label">Timeline</span>
+            </button>
+        </nav>
+
+        <!-- Temporal-only controls -->
+        <div class="legend" id="temporal-legend" style="display:none">
+            <div class="legend-item"><div class="legend-symbol regular-event"></div><span>Regular</span></div>
+            <div class="legend-item"><div class="legend-symbol important-event"></div><span>Important</span></div>
+            <div class="legend-item"><div class="legend-symbol death-event"></div><span>Death</span></div>
+            <div class="legend-item"><div class="legend-symbol edge-line"></div><span>Direct</span></div>
+            <div class="legend-item"><div class="legend-symbol summarized-edge-legend"></div><span>Summarized</span></div>
+        </div>
+        <button id="reset-zoom" class="btn-secondary" style="display:none">↺ Reset</button>
+        <button id="kg-focus-mode" class="btn-secondary" style="display:none" title="Focus on selected node">◎ Focus</button>
+    </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main id="main-content">
+
+    <!-- ============================================================
+         VIEW 1: KNOWLEDGE GRAPH (Primary)
+    ============================================================ -->
+    <div class="view-panel active" id="view-kg">
+        <div class="kg-layout">
+
+            <!-- LEFT SIDEBAR: Filters -->
+            <aside class="kg-sidebar" id="kg-sidebar">
+                <div class="kg-sidebar-section" style="border-bottom:1px solid var(--dark-border);padding-bottom:10px;margin-bottom:10px">
+                    <button id="kg-reset-filters" class="kg-tool-btn" style="width:100%;text-align:center" title="Reset all filters">↺ Reset all filters</button>
+                </div>
+                <div class="kg-sidebar-section">
+                    <div class="kg-sidebar-title">Node Types</div>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-toggle-event"      checked> <span class="kg-type-dot kg-dot-event"></span> Events</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-toggle-character"  checked> <span class="kg-type-dot kg-dot-character"></span> Characters</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-toggle-world"      checked> <span class="kg-type-dot kg-dot-world"></span> Worlds</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-toggle-timeperiod" checked> <span class="kg-type-dot kg-dot-time"></span> Time Periods</label>
+                </div>
+
+                <div class="kg-sidebar-section">
+                    <div class="kg-sidebar-title">Relations</div>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-causes"            checked> <span class="kg-rel-dot" style="background:#ffffff88"></span> causes</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-appears_in"        checked> <span class="kg-rel-dot" style="background:#3b82f666"></span> appears in</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-occurs_in"         checked> <span class="kg-rel-dot" style="background:#f9731650"></span> occurs in</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-occurs_at"         checked> <span class="kg-rel-dot" style="background:#64646840"></span> occurs at</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-same_person_as"   checked> <span class="kg-rel-dot" style="background:#a855f7bb"></span> same person as</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-co_present_with"  checked> <span class="kg-rel-dot" style="background:#22c55e44"></span> co-present with</label>
+                    <label class="kg-toggle-label"><input type="checkbox" id="kg-rel-triggers_death_of" checked><span class="kg-rel-dot" style="background:#ef4444bb"></span> triggers death</label>
+                </div>
+
+                <div class="kg-sidebar-section">
+                    <div class="kg-sidebar-title">Filter by World</div>
+                    <select id="kg-world-filter" class="select-control" style="width:100%">
+                        <option value="all">All Worlds</option>
+                        <option value="Jonas">Jonas World</option>
+                        <option value="Martha">Martha World</option>
+                        <option value="Origin">Origin World</option>
+                    </select>
+                </div>
+
+                <div class="kg-sidebar-section">
+                    <div class="kg-sidebar-title">Filter Events</div>
+                    <select id="kg-event-type" class="select-control" style="width:100%">
+                        <option value="all">All Events</option>
+                        <option value="trigger">Important Triggers</option>
+                        <option value="death">Death Events</option>
+                    </select>
+                </div>
+
+                <div class="kg-sidebar-section">
+                    <div class="kg-sidebar-title">Legend</div>
+                    <div class="kg-legend-item"><div class="kg-legend-diamond"></div> Character</div>
+                    <div class="kg-legend-item"><div class="kg-legend-circle"></div> Event</div>
+                    <div class="kg-legend-item"><div class="kg-legend-hex"></div> World</div>
+                    <div class="kg-legend-item"><div class="kg-legend-pill"></div> Time Period</div>
+                    <div class="kg-legend-item" style="margin-top:8px"><div class="kg-legend-circle" style="background:#ffd700;width:10px;height:10px"></div> Important Trigger</div>
+                    <div class="kg-legend-item"><div class="kg-legend-circle" style="background:#374151;border:2px solid #a855f7;width:10px;height:10px"></div> Death Event</div>
+                    <div class="kg-legend-item"><div class="kg-legend-circle" style="background:#374151;border:2px solid #a855f7;border-style:dashed;width:10px;height:10px"></div> Identity Link</div>
+                </div>
+            </aside>
+
+            <!-- CENTER: Main graph -->
+            <div class="kg-main">
+                <!-- KG toolbar -->
+                <div class="kg-toolbar">
+                    <!-- Search -->
+                    <div class="kg-search-wrap">
+                        <input type="text" id="kg-search-input" class="kg-search-input" placeholder="Search nodes…" autocomplete="off">
+                        <button id="kg-search-clear" class="kg-search-clear" title="Clear">✕</button>
+                        <div id="kg-search-results" class="kg-search-results"></div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="kg-toolbar-tools">
+                        <button id="kg-pathfind-mode" class="kg-tool-btn" title="Find shortest path between two nodes">⇢ Path Finder</button>
+                        <button id="kg-clear-path"    class="kg-tool-btn" title="Clear path highlight">✕ Clear</button>
+                        <button id="kg-reset-view"    class="kg-tool-btn" title="Reset zoom/pan">↺ Reset</button>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="kg-status-bar">
+                        <span id="kg-stats" class="stat-badge">Loading…</span>
+                        <span id="kg-path-status" class="kg-path-status"></span>
+                    </div>
+                </div>
+
+                <!-- Graph canvas -->
+                <div id="kg-container">
+                    <svg id="kg-graph"></svg>
+                    <div id="kg-tooltip" class="tooltip"></div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Inspector -->
+            <div class="kg-inspector" id="kg-inspector">
+                <div class="kg-inspector-header">
+                    <span class="kg-inspector-title">Entity Inspector</span>
+                    <button id="kg-inspector-close" class="kg-inspector-close" title="Close">✕</button>
+                </div>
+                <div id="kg-inspector-content">
+                    <p class="kg-inspector-hint">Click any node to inspect it</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================
+         VIEW 2: TEMPORAL GRAPH
+    ============================================================ -->
+    <div class="view-panel" id="view-temporal" role="region" aria-label="Temporal graph">
+        <div id="visualization-container"><svg id="graph"></svg></div>
+        <div id="tooltip" class="tooltip">
+            <div class="tooltip-header">
+                <span id="tooltip-id"></span><span id="tooltip-date"></span>
+            </div>
+            <div id="tooltip-description"></div>
+            <div id="tooltip-characters"></div>
+            <div id="tooltip-world"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         VIEW 3: FORCE NETWORK
+    ============================================================ -->
+    <div class="view-panel" id="view-network" role="region" aria-label="Force network">
+        <div class="view-controls" id="network-controls">
+            <div class="control-group">
+                <label for="network-world-filter">World</label>
+                <select id="network-world-filter" class="select-control">
+                    <option value="all">All Worlds</option>
+                    <option value="Jonas">Jonas World</option>
+                    <option value="Martha">Martha World</option>
+                    <option value="Origin">Origin World</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="network-type-filter">Show only</label>
+                <select id="network-type-filter" class="select-control">
+                    <option value="all">All Events</option>
+                    <option value="important">Important Triggers</option>
+                    <option value="death">Death Events</option>
+                </select>
+            </div>
+            <div class="stat-badge" id="network-stats">Loading…</div>
+        </div>
+        <div id="network-container"><svg id="network-graph"></svg></div>
+        <div id="network-tooltip" class="tooltip"></div>
+    </div>
+
+    <!-- ============================================================
+         VIEW 4: BAR CHART
+    ============================================================ -->
+    <div class="view-panel" id="view-barchart" role="region" aria-label="Bar chart">
+        <div class="view-controls" id="barchart-controls">
+            <div class="control-group">
+                <label for="bar-group-by">Group by</label>
+                <select id="bar-group-by" class="select-control">
+                    <option value="year">Year</option>
+                    <option value="world">World</option>
+                    <option value="character">Top Characters</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="bar-metric">Metric</label>
+                <select id="bar-metric" class="select-control">
+                    <option value="count">Event Count</option>
+                    <option value="deaths">Death Events</option>
+                    <option value="triggers">Important Triggers</option>
+                </select>
+            </div>
+            <div class="stat-badge" id="barchart-stats">Loading…</div>
+        </div>
+        <div id="barchart-container"><svg id="bar-chart"></svg></div>
+        <div id="barchart-tooltip" class="tooltip"></div>
+    </div>
+
+<!-- ============================================================
+          VIEW 5: ANALYTICS
+     ============================================================ -->
+    <div class="view-panel" id="view-analytics" role="region" aria-label="Analytics dashboard">
+        <div class="view-controls" id="analytics-controls">
+            <div class="control-group">
+                <label for="analytics-metric">Metric</label>
+                <select id="analytics-metric" class="select-control">
+                    <option value="distribution">Events by Year</option>
+                    <option value="edgeTypes">Edge Type Distribution</option>
+                    <option value="characters">Character Involvement</option>
+                    <option value="worlds">Events by World</option>
+                </select>
+            </div>
+            <div class="stat-badge" id="analytics-stats">Loading…</div>
+        </div>
+        <div id="analytics-container"><svg id="analytics-chart"></svg></div>
+        <div id="analytics-tooltip" class="tooltip"></div>
+    </div>
+
+    <!-- ============================================================
+          VIEW 6: TIMELINE
+     ============================================================ -->
+    <div class="view-panel" id="view-timeline" role="region" aria-label="Timeline">
+        <div class="view-controls" id="timeline-controls">
+            <div class="control-group">
+                <label for="timeline-character-filter">Character</label>
+                <select id="timeline-character-filter" class="select-control">
+                    <option value="all">All Characters</option>
+                    <option value="Jonas">Jonas</option>
+                    <option value="Martha">Martha</option>
+                    <option value="Noah">Noah</option>
+                    <option value="Claudia">Claudia</option>
+                    <option value="Ulrich">Ulrich</option>
+                    <option value="Egon">Egon</option>
+                    <option value="Helge">Helge</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="timeline-event-type">Type</label>
+                <select id="timeline-event-type" class="select-control">
+                    <option value="all">All Types</option>
+                    <option value="trigger">Triggers</option>
+                    <option value="death">Deaths</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="timeline-world-filter">World</label>
+                <select id="timeline-world-filter" class="select-control">
+                    <option value="all">All Worlds</option>
+                    <option value="Jonas">Jonas</option>
+                    <option value="Martha">Martha</option>
+                    <option value="Origin">Origin</option>
+                </select>
+            </div>
+            <div class="stat-badge" id="timeline-stats">Loading…</div>
+        </div>
+        <div id="timeline-container"><svg id="timeline-svg"></svg></div>
+        <div id="timeline-detail" class="detail-panel" aria-live="polite">
+            <p class="detail-hint">Click any event node to see details</p>
+        </div>
+        <div id="timeline-tooltip" class="tooltip"></div>
+    </div>
+
+</main>
+
+<!-- ===== LOADING ===== -->
+<div id="loading-overlay" aria-live="polite">
+    <div class="loading-inner">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Building Knowledge Graph…</p>
+    </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/data_parser.js"></script>
+<script src="js/layout_logic.js"></script>
+<script src="js/visualisation.js"></script>
+<script src="js/network.js"></script>
+<script src="js/barchart.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/kg_builder.js"></script>
+<script src="js/kg_inspector.js"></script>
+<script src="js/kg_search.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/kg_pathfinder.js"></script>
+<script src="js/kg_view.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
