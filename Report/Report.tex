@@ -170,7 +170,7 @@ Characters whose names contain the slash notation (e.g., \texttt{Jonas Kahnwald 
     \item Exact match after stripping world-market tags \texttt{(J)}, \texttt{(M)}, \texttt{(O)}.
     \item Cross-referencing characters with \texttt{/} in their names for shared word components (surname overlap).
 \end{enumerate}
-This correctly links all Dark identity pairs: Jonas/Adam, Mikkel/Michael, Martha/Eve, Noah/Hanno Tauber, and cross-world duplicates (e.g., Charlotte Doppler in both Jonas and Martha worlds).
+This correctly links all Dark identity pairs: Jonas/Adam, Mikkel/Michael, Martha/Eve,\linebreak Noah/Hanno Tauber, and cross-world duplicates (e.g., Charlotte Doppler in both Jonas and Martha worlds).
 
 \section{View Implementations}
 
@@ -331,10 +331,10 @@ The following improvements were implemented during the code review and refactori
 The Knowledge Graph now includes an eighth relation type, \texttt{important\_trigger\_for}, which links important-trigger events to the events they directly cause via the \texttt{causes} chain. This provides additional visual affordance for the most narratively significant causal relationships in the series.
 
 \subsection{Architecture: Separate \texttt{kg\_pathfinder.js} Module}
-The BFS shortest-path algorithm was extracted from \texttt{kg\_builder.js} into a dedicated \texttt{kg\_pathfinder.js} module (17 lines). This improves separation of concerns, makes pathfinding independently testable, and aligns with the layered architecture proposed in the original implementation plan. \texttt{kg\_view.js} now calls \texttt{KGPathfinder.shortestPath()} instead of \texttt{KGBuilder.shortestPath()}.
+The BFS shortest-path algorithm was extracted into a dedicated \texttt{kg\_pathfinder.js} module (17 lines). This improves separation of concerns and makes pathfinding independently testable. \texttt{kg\_view.js} now calls \texttt{KGPathfinder.shortestPath()} instead of \texttt{KGBuilder.shortestPath()}.
 
 \subsection{UI Redesign: Glassmorphic Theme}
-The entire user interface was redesigned with a glassmorphic aesthetic. All panels, sidebars, toolbars, buttons, and tooltips now use semi-transparent backgrounds with \texttt{backdrop-filter: blur()} and subtle border highlights (\texttt{rgba(255,255,255,0.3)}), creating a frosted-glass effect. The colour scheme is exclusively light-themed: dark theme was removed entirely (\texttt{theme-toggle.js} and \texttt{theme-toggle.css} deleted; \texttt{theme-config.js} defaults to \texttt{"light"} and its toggle function is a no-op). All graph strokes --- KG edges, network links, arrow markers, node outlines --- were changed from white-based RGBA to black-based RGBA (\texttt{rgba(0,0,0,0.15)} to \texttt{rgba(0,0,0,0.25)}) to remain visible on the light background. Sidebar section fonts, padding, and dot sizes were increased approximately 40\% for improved readability. The redesign is fully contained in \texttt{css/style.css} with no external dependencies.
+The entire user interface was redesigned with a glassmorphic aesthetic. All panels, sidebars, toolbars, buttons, and tooltips now use semi-transparent backgrounds with \texttt{backdrop-filter: blur()} and subtle border highlights, creating a frosted-glass effect. The colour scheme is exclusively light-themed: dark theme was removed entirely (\texttt{theme-toggle.js} and \texttt{theme-toggle.css} deleted). All graph strokes --- KG edges, network links, arrow markers, node outlines --- were changed from white-based RGBA to black-based RGBA (opacity 0.15--0.25) to remain visible on the light background. Sidebar fonts, padding, and dot sizes were increased by roughly 40\% for improved readability.
 
 \subsection{Bug Fix: Edge Stroke Visibility on Light Background}
 \label{sec:lightfix}
@@ -377,7 +377,7 @@ Each view was designed to serve a distinct analytical purpose:
 \subsection{Challenges and Solutions}
 \begin{enumerate}[nosep]
     \item \textbf{D3 simulation interference with data integrity}: As noted in Section~\ref{sec:mutationfix}, D3 mutates link objects in-place. The solution was to store immutable source/target IDs separately, which also cleaned up 22 redundant \texttt{typeof} checks.
-    \item \textbf{Performance with 800+ nodes and 2000+ edges}: The KG force simulation uses type-specific charge strengths (World nodes repel strongly, Characters moderately, Events/TimePeriods weakly) and clustering forces to keep the graph readable. Filter re-renders are full rebuilds rather than incremental updates, which is acceptable for the current dataset size.
+    \item \textbf{Performance with 800+ nodes and 2000+ edges}: The KG force simulation uses type-specific charge strengths (World nodes repel strongly, Characters moderately, Events\-/Time\-Periods weakly) and clustering forces to keep the graph readable. Filter re-renders are full rebuilds rather than incremental updates, which is acceptable for the current dataset size.
     \item \textbf{Cross-world identity mapping}: Characters with the same name but different world tags (e.g., \texttt{Charlotte Doppler (M)} vs.\ \texttt{Charlotte Doppler (J)}) needed explicit linking. This was solved during the same\_person\_as rewrite by matching names after tag stripping.
 \end{enumerate}
 
@@ -402,6 +402,7 @@ Each view was designed to serve a distinct analytical purpose:
 The Dark Series Knowledge Graph Visualization successfully transforms flat CSV data into a rich, interactive graph exploration experience. The Knowledge Graph serves as a unified data backbone for seven distinct visualization views including an Analytics dashboard, enabling users to explore character relationships, causal chains, and temporal patterns of the series from multiple complementary perspectives. The improvements documented in this report --- identity detection fix, D3 mutation protection, the \texttt{important\_trigger\_for} relation type, and the pathfinding module extraction --- collectively improve correctness, robustness, and maintainability of the codebase.
 
 \begin{thebibliography}{99}
+\raggedright
 
 \bibitem{d3}
 Mike Bostock,
@@ -416,7 +417,7 @@ Netflix.
 \bibitem{chord}
 M. Bostock,
 \textit{D3 Chord Diagram},
-Observable, \url{https://observablehq.com/@d3/chord-diagram}
+Observable. \url{https://observablehq.com/@d3/chord-diagram}
 
 \end{thebibliography}
 

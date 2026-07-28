@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.28)  28 JUL 2026 15:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.28)  28 JUL 2026 15:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -543,11 +543,6 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \openout4 = `Report.toc'.
 
  [2] [3]
-Overfull \hbox (12.02092pt too wide) in paragraph at lines 173--174
-\T1/lmr/m/n/10.95 (-20) This cor-rectly links all Dark iden-tity pairs: Jonas/A
-dam, Mikkel/Michael, Martha/Eve, Noah/Hanno
- []
-
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 177.
 <../Screenshot/01-knowledge-graph.png, id=207, 1927.2pt x 1084.05pt>
@@ -556,11 +551,10 @@ File: ../Screenshot/01-knowledge-graph.png Graphic file (type png)
 Package pdftex.def Info: ../Screenshot/01-knowledge-graph.png  used on input li
 ne 181.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-[4{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+ [4{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 90.
-
-(C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
+ (C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [5
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
@@ -645,33 +639,8 @@ s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.313 
-       <../Screenshot/07-timeline.png (PNG copy)>]
-Overfull \hbox (35.39624pt too wide) in paragraph at lines 334--335
-\T1/lmr/m/n/10.95 (-20) The BFS shortest-path al-go-rithm was ex-tracted from \
-T1/lmtt/m/n/10.95 kg_builder.js \T1/lmr/m/n/10.95 (-20) into a ded-i-cated \T1/
-lmtt/m/n/10.95 kg_pathfinder.js
- []
-
-
-Overfull \hbox (4.38179pt too wide) in paragraph at lines 337--338
-\T1/lmr/m/n/10.95 (-20) The colour scheme is ex-clu-sively light-themed: dark t
-heme was re-moved en-tirely (\T1/lmtt/m/n/10.95 theme-toggle.js
- []
-
-[11] [12]
-Overfull \hbox (25.34868pt too wide) in paragraph at lines 380--381
-\T1/lmr/m/n/10.95 (-20) specific charge strengths (World nodes re-pel strongly,
- Char-ac-ters mod-er-ately, Events/TimePeriods
- []
-
-[13]
-Underfull \hbox (badness 5064) in paragraph at lines 417--420
-[]\T1/lmr/m/n/10.95 (+20) M. Bo-stock, \T1/lmr/m/it/10.95 (+20) D3 Chord Di-a-g
-ram\T1/lmr/m/n/10.95 (+20) , Ob-serv-able, []$\T1/lmtt/m/n/10.95 https : / / ob
-servablehq . com / @d3 /
- []
-
-[14] (Report.aux)
+       <../Screenshot/07-timeline.png (PNG copy)>] [11] [12] [13] [14]
+(Report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -680,11 +649,11 @@ Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: 0AFFE218F61064BECACFD9E2567B011C;6558.
  ) 
 Here is how much of TeX's memory you used:
- 14560 strings out of 467871
- 227049 string characters out of 5428452
- 718939 words of memory out of 5000000
+ 14562 strings out of 467871
+ 227071 string characters out of 5428452
+ 717939 words of memory out of 5000000
  43017 multiletter control sequences out of 15000+600000
- 696671 words of font info for 154 fonts, out of 8000000 for 9000
+ 696754 words of font info for 155 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,12n,79p,1005b,1294s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/M
@@ -695,9 +664,9 @@ ts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lm
 sy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Program 
 Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX/fonts/ty
 pe1/public/lm/lmtt9.pfb>
-Output written on Report.pdf (14 pages, 2151190 bytes).
+Output written on Report.pdf (14 pages, 2150608 bytes).
 PDF statistics:
- 373 PDF objects out of 1000 (max. 8388607)
+ 372 PDF objects out of 1000 (max. 8388607)
  91 named destinations out of 1000 (max. 500000)
  41276 words of extra memory for PDF output out of 42996 (max. 10000000)
 
