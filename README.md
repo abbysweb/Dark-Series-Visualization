@@ -146,7 +146,3 @@ Edge types: `appears_in`, `causes`, `occurs_in`, `occurs_at`, `same_person_as`, 
 The Dark Series Knowledge Graph Visualization successfully transforms flat CSV data into a rich, interactive graph exploration experience. The Knowledge Graph serves as a unified data backbone for six distinct visualization views plus an Analytics dashboard, enabling users to explore character relationships, causal chains, and temporal patterns from multiple complementary perspectives.
 
 ---
-
-## License
-
-Academic project.
