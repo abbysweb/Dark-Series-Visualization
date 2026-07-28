@@ -9,21 +9,21 @@ const KGView = (() => {
 
     // ── Constants ───────────────────────────────────────────────────────────
     const REL_STYLES = {
-        causes:            { color: 'rgba(37,99,235,0.7)',  dash: 'none',    width: 2,   label: 'causes' },
-        appears_in:        { color: 'rgba(59,130,246,0.65)', dash: '6,3',   width: 1.4, label: 'appears in' },
-        occurs_in:         { color: 'rgba(249,115,22,0.65)', dash: '3,4',   width: 1.4, label: 'occurs in' },
-        occurs_at:         { color: 'rgba(100,116,139,0.5)',dash: '2,5',   width: 1,   label: 'occurs at' },
-        same_person_as:    { color: 'rgba(168,85,247,0.75)', dash: '6,3', width: 2.4, label: 'same person' },
-        co_present_with:   { color: 'rgba(16,185,129,0.55)', dash: '3,4', width: 1,   label: 'co-present' },
-        triggers_death_of: { color: 'rgba(239,68,68,0.8)',   dash: 'none',  width: 2.2, label: 'triggers death' },
-        important_trigger_for: { color: 'rgba(234,179,8,0.75)', dash: 'none', width: 2, label: 'important trigger' }
+        causes:            { color: 'rgba(96,165,250,0.75)',  dash: 'none',    width: 2,   label: 'causes' },
+        appears_in:        { color: 'rgba(120,165,250,0.65)', dash: '6,3',   width: 1.4, label: 'appears in' },
+        occurs_in:         { color: 'rgba(251,146,60,0.7)',  dash: '3,4',   width: 1.4, label: 'occurs in' },
+        occurs_at:         { color: 'rgba(140,155,175,0.5)',dash: '2,5',   width: 1,   label: 'occurs at' },
+        same_person_as:    { color: 'rgba(200,130,255,0.8)', dash: '6,3', width: 2.4, label: 'same person' },
+        co_present_with:   { color: 'rgba(52,211,153,0.6)', dash: '3,4', width: 1,   label: 'co-present' },
+        triggers_death_of: { color: 'rgba(248,113,113,0.85)',   dash: 'none',  width: 2.2, label: 'triggers death' },
+        important_trigger_for: { color: 'rgba(251,191,36,0.8)', dash: 'none', width: 2, label: 'important trigger' }
     };
 
     const WORLD_FILL = {
-        Jonas:          '#3b82f6',
-        Martha:         '#ef4444',
-        Origin:         '#f97316',
-        'Origin (End)': '#fb923c'
+        Jonas:          '#60a5fa',
+        Martha:         '#f87171',
+        Origin:         '#fb923c',
+        'Origin (End)': '#fdba74'
     };
 
     const getWorldFill = (world) => {
@@ -278,21 +278,25 @@ const KGView = (() => {
     // ── Node drawing helpers ─────────────────────────────────────────────────
     const drawCharacter = (sel, d) => {
         const maxCount = d3.max(kg.byType.characters, c => c.eventCount) || 1;
-        const size = 900 + (d.eventCount / maxCount) * 2500;
+        const countFactor = d.eventCount / maxCount;
+        // Dynamic sizing: base size + event frequency factor + text length factor
+        const textLength = d.label ? d.label.length : 0;
+        const textFactor = Math.min(textLength / 20, 1.5);
+        const size = 900 + countFactor * 2000 + textFactor * 800;
         const r = Math.sqrt(size / Math.PI);
 
         sel.append('rect')
             .attr('width', r * 2.2).attr('height', r * 2.2)
             .attr('x', -r * 1.1).attr('y', -r * 1.1)
             .attr('transform', 'rotate(45)')
-            .attr('fill', d.worldSuffix === 'M' ? 'rgba(239,68,68,0.88)' :
-                          d.worldSuffix === 'J' ? 'rgba(59,130,246,0.88)' : 'rgba(249,115,22,0.88)')
+            .attr('fill', d.worldSuffix === 'M' ? 'rgba(248,113,113,0.9)' :
+                          d.worldSuffix === 'J' ? 'rgba(96,165,250,0.9)' : 'rgba(251,146,60,0.9)')
             .attr('stroke', '#d97706')
             .attr('stroke-width', d.hasIdentity ? 2.5 : 1.2)
             .attr('rx', 4);
 
         const fontSize = Math.max(10, Math.min(16, r * 0.65));
-        const label = d.label.length > 18 ? d.label.slice(0, 16) + '…' : d.label;
+        const label = d.label.length > 22 ? d.label.slice(0, 20) + '…' : d.label;
 
         sel.append('text')
             .attr('text-anchor', 'middle').attr('dominant-baseline', 'central')
@@ -312,8 +316,8 @@ const KGView = (() => {
         const r = d.importantTrigger ? 9 : d.death ? 8 : 6;
         sel.append('circle').attr('r', r)
             .attr('fill', getWorldFill(d.world))
-            .attr('fill-opacity', 0.9)
-            .attr('stroke', d.death ? '#a855f7' : d.importantTrigger ? '#eab308' : 'rgba(0,0,0,0.25)')
+            .attr('fill-opacity', 0.95)
+            .attr('stroke', d.death ? '#c084fc' : d.importantTrigger ? '#fbbf24' : 'rgba(255,255,255,0.2)')
             .attr('stroke-width', (d.death || d.importantTrigger) ? 2 : 1.2);
 
         if (d.importantTrigger) {
