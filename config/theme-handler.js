@@ -42,6 +42,7 @@ const ThemeHandler = (() => {
             { name: 'KGSearch', manager: KGSearch },
             { name: 'KGInspector', manager: KGInspector },
             { name: 'KGPathfinder', manager: KGPathfinder },
+            { name: 'ChordDiagram', manager: ChordDiagram },
             { name: 'LayoutLogic', manager: LayoutLogic }
         ];
 

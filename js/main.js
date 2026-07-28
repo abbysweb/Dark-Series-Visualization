@@ -1,6 +1,6 @@
 // ── View Manager ─────────────────────────────────────────────────────────────
 const ViewManager = (() => {
-    const VIEWS = ['kg', 'temporal', 'network', 'barchart', 'analytics', 'timeline'];
+    const VIEWS = ['kg', 'temporal', 'network', 'barchart', 'analytics', 'chord', 'timeline'];
     let activeView       = 'kg';
     let initializedViews = new Set();
     let sharedData       = null;
@@ -15,6 +15,7 @@ const ViewManager = (() => {
         network:   () => NetworkGraph.initialize(sharedData),
         barchart:  () => BarChart.initialize(sharedData),
         analytics: () => Analytics.initialize(sharedData),
+        chord:     () => ChordDiagram.initialize(sharedData),
         timeline:  () => Timeline.initialize(sharedData)
     };
 
