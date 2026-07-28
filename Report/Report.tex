@@ -57,7 +57,7 @@
 \maketitle
 
 \begin{abstract}
-This report documents the architecture, data model, implementation, and recent improvements of the \emph{Dark Series Knowledge Graph Visualization} --- an interactive web application for exploring the temporal, causal, and character-based relationships of the television series \emph{Dark} (Netflix, 2017--2020). The application transforms flat CSV data into a typed Knowledge Graph and provides five coordinated visualization views, each projecting the same underlying graph from a different perspective. This report details the data model, the D3.js-based rendering pipeline, the bug fixes and architectural improvements applied, and guidelines for extending the system.
+This report documents the architecture, data model, implementation, and recent improvements of the \emph{Dark Series Knowledge Graph Visualization} --- an interactive web application for exploring the temporal, causal, and character-based relationships of the television series \emph{Dark} (Netflix, 2017--2020). The application transforms flat CSV data into a typed Knowledge Graph and provides seven coordinated visualization views, each projecting the same underlying graph from a different perspective. This report details the data model, the D3.js-based rendering pipeline, the bug fixes and architectural improvements applied, and guidelines for extending the system.
 \end{abstract}
 
 \tableofcontents
@@ -70,12 +70,13 @@ This project was developed following a structured, iterative methodology that co
 
 The Dark Series Knowledge Graph Visualization is a single-page web application built with vanilla JavaScript and the D3.js library (v7). It loads two CSV datasets --- \texttt{Dark\_Events.csv} (approximately 340 events with character, world, and temporal annotations) and \texttt{Dark\_Edges.csv} (approximately 590 causal edges between events) --- and converts them into a unified Knowledge Graph (KG) comprising four entity types and eight typed, directed relations.
 
-The application provides six interactive views:
+The application provides seven interactive views:
 \begin{enumerate}[nosep]
     \item \textbf{Knowledge Graph} --- the primary full-screen force-directed graph with node shapes and colors encoding entity types.
     \item \textbf{Temporal Graph} --- a swimlane-based timeline of events grouped by time windows.
     \item \textbf{Force Network} --- an event-centric graph linking events by shared characters.
     \item \textbf{Bar Chart} --- grouped bar chart of event counts by year, world, or character.
+    \item \textbf{Chord Diagram} --- a circular co-occurrence diagram showing character pair relationships across events.
     \item \textbf{Analytics Dashboard} --- a summary dashboard with key metrics and four configurable distribution charts.
     \item \textbf{Timeline} --- a horizontal beeswarm layout of events across World bands from 1888 to 2053.
 \end{enumerate}
@@ -88,24 +89,30 @@ The project follows a flat client-side architecture with no build step or framew
 
 \begin{verbatim}
 Dark Series Visualization/
-├── index.html                  ← Main page, all 5 view panels
-├── css/style.css               ← Unified stylesheet (1184 lines)
-├── data/
-│   ├── Dark_Events.csv         ← Event records (~340 rows)
-│   └── Dark_Edges.csv          ← Causal edges (~590 rows)
-└── js/
-    ├── data_parser.js          ← CSV loader & preprocessing
-    ├── layout_logic.js         ← Temporal graph layout engine
-    ├── visualisation.js        ← Temporal graph renderer
-    ├── network.js              ← Force network renderer
-    ├── barchart.js             ← Bar chart module
-    ├── timeline.js             ← Beeswarm timeline renderer
-    ├── kg_builder.js           ← KG data model construction
-    ├── kg_view.js              ← Main KG D3 force visualization
-    ├── kg_inspector.js         ← Entity detail panel
-    ├── kg_search.js            ← Live search + tooltips
-    ├── kg_pathfinder.js        ← BFS shortest-path module
-    └── main.js                 ← Boot sequence & view manager
+|-- index.html                  (Main page, all 7 view panels)
+|-- css/style.css               (Glassmorphic stylesheet, 1360 lines)
+|-- Screenshot/                 (UI walkthrough screenshots, 7 PNGs)
+|-- data/
+|   |-- Dark_Events.csv         (Event records ~340 rows)
+|   |-- Dark_Edges.csv          (Causal edges ~590 rows)
+|-- config/
+|   |-- theme-config.js         (Light-only theme configuration)
+|   |-- theme-handler.js        (Theme-aware view updates)
+|-- js/
+    |-- data_parser.js          (CSV loader & preprocessing)
+    |-- layout_logic.js         (Temporal graph layout engine)
+    |-- visualisation.js        (Temporal graph renderer)
+    |-- network.js              (Force network renderer)
+    |-- barchart.js             (Bar chart module)
+    |-- chord.js                (Chord dependency diagram)
+    |-- timeline.js             (Beeswarm timeline renderer)
+    |-- analytics_dashboard.js  (Summary stats + 4 chart types)
+    |-- kg_builder.js           (KG data model construction)
+    |-- kg_view.js              (Main KG D3 force visualization)
+    |-- kg_inspector.js         (Entity detail panel)
+    |-- kg_search.js            (Live search + tooltips)
+    |-- kg_pathfinder.js        (BFS shortest-path module)
+    |-- main.js                 (Boot sequence & view manager)
 \end{verbatim}
 
 \subsection{Boot Sequence}
@@ -180,9 +187,9 @@ The primary view renders a D3 force-directed graph with the following visual enc
     \item \textit{TimePeriod}: Rounded pill; positioned on a timeline backbone at the bottom.
 \end{itemize}
 
-\textbf{Edges:} Each relation type has a distinct color, dash pattern, and marker:
+\textbf{Edges:} Each relation type has a distinct color, dash pattern, and marker (colors use black-based RGBA for visibility on the light theme background):
 \begin{itemize}[nosep]
-    \item \texttt{causes}: solid white arrow, width 1.5
+    \item \texttt{causes}: solid dark arrow, width 1.5
     \item \texttt{appears\_in}: blue dashed, width 1
     \item \texttt{occurs\_in}: orange dashed, width 1
     \item \texttt{occurs\_at}: grey thin dashed, width 0.8
@@ -211,7 +218,10 @@ An event-centric force layout linking events that share characters. Node size en
 \subsection{Bar Chart (\texttt{barchart.js})}
 Grouped vertical bars with configurable grouping (year, world, top-25 characters) and metrics (total count, death events, or trigger events). Animated entry with D3 transitions.
 
-\subsection{Analytics Dashboard (\texttt{analytics.js})}
+\subsection{Chord Diagram (\texttt{chord.js})}
+A circular chord layout showing character co-occurrence across events. The top 14 most frequent characters are displayed as arc segments around the circumference. Coloured ribbons between arcs represent events where both characters appear together --- ribbon thickness is proportional to the co-occurrence count. The diagram uses D3's \texttt{d3.chord()} layout with \texttt{blendMode="multiply"} for correct colour compositing on the light theme background. Hovering an arc highlights all ribbons originating from that character and displays a tooltip with total co-occurrence count; hovering a specific ribbon shows the exact pair count. The chord diagram adds a character-centric relational perspective complementing the event- and time-oriented views.
+
+\subsection{Analytics Dashboard (\texttt{analytics\_dashboard.js})}
 The Analytics view provides a summary dashboard at the top showing seven key metrics rendered as stat cards: total number of events, total edges, distinct characters, distinct worlds, distinct years, death events, and important-trigger events. Below the stats bar, the main chart area renders a configurable visualization with four selectable metrics via a dropdown:
 \begin{itemize}[nosep]
     \item \textbf{Events by Year} --- a bar chart showing event density per year across the full 1885--2056 span. Tooltips display exact counts on hover.
@@ -219,7 +229,7 @@ The Analytics view provides a summary dashboard at the top showing seven key met
     \item \textbf{Character Involvement} --- a horizontal bar chart of the top 20 most-active characters by event count.
     \item \textbf{Events by World} --- a bar chart showing event distribution across Jonas World, Martha World, and Origin World with world-specific color coding.
 \end{itemize}
-All charts use animated D3 transitions for entry and update, with the same dark theme and tooltip system as the other views.
+All charts use animated D3 transitions for entry and update, with the same glassmorphic light theme and tooltip system as the other views.
 
 \section{Technical Implementation Details}
 
@@ -278,6 +288,27 @@ The Knowledge Graph now includes an eighth relation type, \texttt{important\_tri
 
 \subsection{Architecture: Separate \texttt{kg\_pathfinder.js} Module}
 The BFS shortest-path algorithm was extracted from \texttt{kg\_builder.js} into a dedicated \texttt{kg\_pathfinder.js} module (17 lines). This improves separation of concerns, makes pathfinding independently testable, and aligns with the layered architecture proposed in the original implementation plan. \texttt{kg\_view.js} now calls \texttt{KGPathfinder.shortestPath()} instead of \texttt{KGBuilder.shortestPath()}.
+
+\subsection{Feature Addition: Chord Dependency Diagram}
+A seventh visualization view was added --- a circular chord diagram (\texttt{chord.js}) showing character co-occurrence across events. The module builds a symmetric co-occurrence matrix from the event--character adjacency data, retains the top 14 most frequent characters, and renders the result using D3's \texttt{d3.chord()} layout. Directed ribbons distinguish source and target arcs, and a hover interaction provides detailed co-occurrence counts. The diagram uses CSS custom properties for colour theming and applies \texttt{blendMode="multiply"} for correct compositing on the light background. This view fills a relational gap not addressed by the existing event- and timeline-oriented views.
+
+\subsection{UI Redesign: Glassmorphic Theme}
+The entire user interface was redesigned with a glassmorphic aesthetic. All panels, sidebars, toolbars, buttons, and tooltips now use semi-transparent backgrounds with \texttt{backdrop-filter: blur()} and subtle border highlights (\texttt{rgba(255,255,255,0.3)}), creating a frosted-glass effect. The colour scheme is exclusively light-themed: dark theme was removed entirely (\texttt{theme-toggle.js} and \texttt{theme-toggle.css} deleted; \texttt{theme-config.js} defaults to \texttt{"light"} and its toggle function is a no-op). All graph strokes --- KG edges, network links, arrow markers, node outlines --- were changed from white-based RGBA to black-based RGBA (\texttt{rgba(0,0,0,0.15)} to \texttt{rgba(0,0,0,0.25)}) to remain visible on the light background. Sidebar section fonts, padding, and dot sizes were increased approximately 40\% for improved readability. The redesign is fully contained in \texttt{css/style.css} with no external dependencies.
+
+\subsection{Bug Fix: Edge Stroke Visibility on Light Background}
+\label{sec:lightfix}
+\textbf{Files:} \texttt{kg\_view.js}, \texttt{network.js}, \texttt{chord.js}, \texttt{css/style.css}
+
+\textbf{Problem:} After switching to the light theme, all graph edges, arrow markers, and node strokes inherited the old dark-theme colour \texttt{rgba(255,255,255,...)}, making them invisible against the white background.
+
+\textbf{Fix:} Every rendered stroke was systematically updated:
+\begin{itemize}[nosep]
+    \item KG edge fallback stroke: \texttt{rgba(255,255,255,0.20)} $\rightarrow$ \texttt{rgba(0,0,0,0.20)}
+    \item Event node stroke: \texttt{rgba(255,255,255,0.15)} $\rightarrow$ \texttt{rgba(0,0,0,0.15)}
+    \item Network arrow marker fill: \texttt{rgba(255,255,255,0.25)} $\rightarrow$ \texttt{rgba(0,0,0,0.25)}
+    \item Network node stroke: \texttt{rgba(255,255,255,0.15)} $\rightarrow$ \texttt{rgba(0,0,0,0.15)}
+    \item Chord ribbon and arc strokes: changed to use CSS custom properties (\texttt{--text-primary}) for automatic theme adaptation.
+\end{itemize}
 
 \section{How to Run}
 
