@@ -64,6 +64,7 @@ Beeswarm-per-lane layout across World bands covering 1885--2056. Each row is a w
 3. A local server is required; `file://` will not work due to CORS restrictions on XHR-based CSV loading.
 
 ## Author
+
 Abdullah Al Mamun  
 M.Sc. & B.Sc. in Software Engineering  
 TU Wien (Vienna, Austria) & Daffodil International University  
