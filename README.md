@@ -5,7 +5,7 @@ Interactive web application for exploring the temporal, causal, and character-ba
 ---
 
 ## Author
-**Abdullah Al Mamun**  
+Abdullah Al Mamun
 M.Sc. & B.Sc. in Software Engineering  
 TU Wien (Vienna, Austria) & Daffodil International University  
 Email: mamun.swe.de@gmail.com  
