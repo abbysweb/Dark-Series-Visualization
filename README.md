@@ -5,13 +5,12 @@ Interactive web application for exploring the temporal, causal, and character-ba
 ---
 
 ## Author
-
-Abdullah Al Mamun
-M.Sc. & B.Sc. in Software Engineering
-TU Wien (Vienna, Austria) & Daffodil International University
-Email: mamun.swe.de@gmail.com
-GitHub: github.com/abbysweb
-ORCID: 0009-0006-7473-0024
+**Abdullah Al Mamun**  
+M.Sc. & B.Sc. in Software Engineering  
+TU Wien (Vienna, Austria) & Daffodil International University  
+Email: mamun.swe.de@gmail.com  
+GitHub: [github.com/abbysweb](https://github.com/abbysweb)  
+ORCID: [0009-0006-7473-0024](https://orcid.org/0009-0006-7473-0024)
 
 ---
 
