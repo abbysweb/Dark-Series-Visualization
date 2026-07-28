@@ -101,3 +101,9 @@ Dark Series Visualization/
 ## License
 
 Academic project.
+
+---
+
+## Report
+
+A full technical design report is available in `Report/Report.tex` (LaTeX source) and `Report/Report.pdf` (compiled). It covers the architecture, data model, implementation details, bug fixes, and design decisions.
