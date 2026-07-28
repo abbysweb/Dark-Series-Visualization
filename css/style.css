@@ -350,13 +350,13 @@ body {
     cursor: pointer;
     transition: r 0.15s ease, filter 0.15s ease;
 }
-.node:hover { filter: brightness(1.3); }
+.node:hover { filter: brightness(1.15) drop-shadow(0 0 8px rgba(37,99,235,0.25)); }
 .node.jonas   { fill: var(--jonas); }
 .node.martha  { fill: var(--martha); }
 .node.other   { fill: var(--other); }
-.node.important { fill: var(--trigger); }
-.node.death   { stroke: var(--death); stroke-width: 2.5px; }
-.node.start   { fill: var(--accent); stroke: var(--text-primary); stroke-width: 2px; }
+.node.important { fill: var(--trigger); filter: drop-shadow(0 0 3px rgba(234,179,8,0.3)); }
+.node.death   { stroke: var(--death); stroke-width: 2.5px; filter: drop-shadow(0 0 3px rgba(168,85,247,0.25)); }
+.node.start   { fill: var(--accent); stroke: var(--text-primary); stroke-width: 2px; filter: drop-shadow(0 0 4px rgba(37,99,235,0.3)); }
 
 .edge {
     stroke: rgba(0,0,0,0.25);
@@ -585,7 +585,7 @@ body {
 
 .timeline-event-circle {
     cursor: pointer;
-    transition: filter 0.15s ease, transform 0.15s ease;
+    transition: filter 0.2s ease, transform 0.2s ease;
     transform-origin: center;
     transform-box: fill-box;
 }

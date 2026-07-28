@@ -20,10 +20,10 @@ const KGView = (() => {
     };
 
     const WORLD_FILL = {
-        Jonas:          '#1d4ed8',
-        Martha:         '#991b1b',
-        Origin:         '#9a3412',
-        'Origin (End)': '#7c2d12'
+        Jonas:          '#3b82f6',
+        Martha:         '#ef4444',
+        Origin:         '#f97316',
+        'Origin (End)': '#fb923c'
     };
 
     const getWorldFill = (world) => {
@@ -33,7 +33,7 @@ const KGView = (() => {
     };
 
     const NODE_STYLE = {
-        Event:       { baseR: 5,  importantR: 9,  deathR: 8,  color: null /* world-based */ },
+        Event:       { baseR: 6,  importantR: 10, deathR: 9,  color: null /* world-based */ },
         Character:   { baseSize: 546, maxSize: 1820 },   // d3.symbol size (area)
         World:       { r: 28 },
         TimePeriod:  { w: 38, h: 18 }
@@ -274,11 +274,11 @@ const KGView = (() => {
             .attr('width', r * 1.9).attr('height', r * 1.9)
             .attr('x', -r * 0.95).attr('y', -r * 0.95)
             .attr('transform', 'rotate(45)')
-            .attr('fill', d.worldSuffix === 'M' ? 'rgba(153,27,27,0.88)' :
-                          d.worldSuffix === 'J' ? 'rgba(29,78,216,0.88)' : 'rgba(120,83,8,0.88)')
-            .attr('stroke', '#ca8a04')
-            .attr('stroke-width', d.hasIdentity ? 3 : 1.5)
-            .attr('rx', 3);
+            .attr('fill', d.worldSuffix === 'M' ? 'rgba(239,68,68,0.88)' :
+                          d.worldSuffix === 'J' ? 'rgba(59,130,246,0.88)' : 'rgba(249,115,22,0.88)')
+            .attr('stroke', '#d97706')
+            .attr('stroke-width', d.hasIdentity ? 2.5 : 1.2)
+            .attr('rx', 4);
 
         const fontSize = Math.max(9, Math.min(13, r * 0.55));
         const label = d.label.length > 18 ? d.label.slice(0, 16) + '…' : d.label;
@@ -302,12 +302,12 @@ const KGView = (() => {
         sel.append('circle').attr('r', r)
             .attr('fill', getWorldFill(d.world))
             .attr('fill-opacity', 0.9)
-            .attr('stroke', d.death ? '#9333ea' : d.importantTrigger ? '#ca8a04' : 'rgba(0,0,0,0.35)')
-            .attr('stroke-width', (d.death || d.importantTrigger) ? 2.5 : 1);
+            .attr('stroke', d.death ? '#a855f7' : d.importantTrigger ? '#eab308' : 'rgba(0,0,0,0.25)')
+            .attr('stroke-width', (d.death || d.importantTrigger) ? 2 : 1.2);
 
         if (d.importantTrigger) {
-            sel.append('circle').attr('r', r + 5)
-                .attr('fill', 'none').attr('stroke', '#ca8a04')
+            sel.append('circle').attr('r', r + 4)
+                .attr('fill', 'none').attr('stroke', '#d97706')
                 .attr('stroke-width', 1).attr('stroke-opacity', 0.5)
                 .attr('pointer-events', 'none');
 
