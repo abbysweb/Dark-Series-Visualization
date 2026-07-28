@@ -152,10 +152,10 @@ body {
 .regular-event       { background: var(--text-primary); }
 .important-event     { background: var(--accent); }
 .death-event         { background: var(--death); }
-.edge-line           { height: 2px; border-radius: 0; background: rgba(255,255,255,0.25); }
+.edge-line           { height: 2px; border-radius: 0; background: rgba(0,0,0,0.25); }
 .summarized-edge-legend {
     height: 2px; border-radius: 0;
-    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 4px, transparent 4px, transparent 8px);
+    background: repeating-linear-gradient(90deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 4px, transparent 4px, transparent 8px);
 }
 
 .btn-secondary {
@@ -313,7 +313,7 @@ body {
 }
 
 .node {
-    stroke: var(--glass-border);
+    stroke: rgba(0,0,0,0.15);
     stroke-width: 1.5px;
     cursor: pointer;
     transition: r 0.15s ease, filter 0.15s ease;
@@ -327,15 +327,15 @@ body {
 .node.start   { fill: var(--accent); stroke: var(--text-primary); stroke-width: 2px; filter: drop-shadow(0 0 6px var(--accent-glow)); }
 
 .edge {
-    stroke: rgba(255, 255, 255, 0.15);
+    stroke: rgba(0, 0, 0, 0.15);
     stroke-width: 1px;
     fill: none;
 }
 
-.edge-marker { fill: rgba(255, 255, 255, 0.20); }
+.edge-marker { fill: rgba(0, 0, 0, 0.20); }
 
 .summarized-edge {
-    stroke: rgba(255, 255, 255, 0.12);
+    stroke: rgba(0, 0, 0, 0.12);
     stroke-width: 1px;
     stroke-dasharray: 4,4;
     fill: none;
@@ -374,12 +374,12 @@ body {
 .network-node:hover { filter: brightness(1.3) drop-shadow(0 0 6px currentColor); }
 
 .network-link {
-    stroke: rgba(255, 255, 255, 0.10);
+    stroke: rgba(0, 0, 0, 0.12);
     stroke-width: 1px;
     fill: none;
 }
-.network-link.weighted-2 { stroke-width: 2px; stroke: rgba(255, 255, 255, 0.16); }
-.network-link.weighted-3 { stroke-width: 3px; stroke: rgba(255, 255, 255, 0.22); }
+.network-link.weighted-2 { stroke-width: 2px; stroke: rgba(0, 0, 0, 0.18); }
+.network-link.weighted-3 { stroke-width: 3px; stroke: rgba(0, 0, 0, 0.25); }
 
 .network-node-label {
     fill: var(--text-primary);

@@ -10,45 +10,6 @@
 const ThemeConfig = (() => {
     // Default theme configuration
     const DEFAULT_THEMES = {
-        dark: {
-            name: 'Dark Mode',
-            icon: '🌙',
-            '--bg': '#0a0a0f',
-            '--bg-card': 'rgba(255, 255, 255, 0.04)',
-            '--bg-card-grad': 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
-            '--bg-elevated': 'rgba(255, 255, 255, 0.06)',
-            '--bg-sidebar': 'rgba(255, 255, 255, 0.03)',
-            '--bg-header': 'rgba(10, 10, 15, 0.80)',
-            '--text-primary': '#e8e8f0',
-            '--text-secondary': '#9a9ab0',
-            '--text-muted': '#6a6a80',
-            '--accent': '#7c9aff',
-            '--accent-dim': 'rgba(124, 154, 255, 0.12)',
-            '--accent-glow': 'rgba(124, 154, 255, 0.25)',
-            '--jonas': '#7c9aff',
-            '--martha': '#ff7c7c',
-            '--origin': '#ffb07c',
-            '--other': '#7cffb0',
-            '--death': '#c88cff',
-            '--trigger': '#ffd07c',
-            '--border': 'rgba(255, 255, 255, 0.08)',
-            '--border-hover': 'rgba(255, 255, 255, 0.16)',
-            '--gradient-1': '#0a0a0f',
-            '--gradient-2': '#0f0f18',
-            '--gradient-3': '#14141e',
-            '--shadow': '0 8px 32px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)',
-            '--shadow-sm': '0 4px 16px rgba(0,0,0,0.3)',
-            '--tooltip-bg': 'rgba(20, 20, 30, 0.90)',
-            '--tooltip-border': 'rgba(255, 255, 255, 0.10)',
-            '--input-bg': 'rgba(255, 255, 255, 0.04)',
-            '--input-border': 'rgba(255, 255, 255, 0.10)',
-            '--scrollbar-thumb': 'rgba(255, 255, 255, 0.10)',
-            '--scrollbar-track': 'transparent',
-            '--glass-bg': 'rgba(255, 255, 255, 0.04)',
-            '--glass-border': 'rgba(255, 255, 255, 0.08)',
-            '--glass-shadow': '0 8px 32px rgba(0,0,0,0.3)',
-            '--glass-blur': 'blur(16px)',
-        },
         light: {
             name: 'Light Mode',
             icon: '☀️',
@@ -90,16 +51,12 @@ const ThemeConfig = (() => {
         }
     };
 
-    let currentTheme = 'dark';
+    let currentTheme = 'light';
     let documentRoot = null;
 
     const init = () => {
         documentRoot = document.documentElement;
-        const savedTheme = localStorage.getItem('dark-series-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-        applyTheme(initialTheme);
+        applyTheme('light');
     };
 
     const applyTheme = (themeName) => {
@@ -114,9 +71,8 @@ const ThemeConfig = (() => {
             documentRoot.style.setProperty(cssVar, value);
         });
 
-        // Update page class for compatibility
-        document.body.classList.toggle('dark-theme', themeName === 'dark');
-        document.body.classList.toggle('light-theme', themeName === 'light');
+        document.body.classList.add('light-theme');
+        document.body.classList.remove('dark-theme');
 
         // Dispatch event for views to react to theme change
         document.dispatchEvent(new CustomEvent('theme:changed', {
@@ -124,10 +80,7 @@ const ThemeConfig = (() => {
         }));
     };
 
-    const toggle = () => {
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        applyTheme(newTheme);
-    };
+    const toggle = () => {};
 
     const getCurrentTheme = () => currentTheme;
 

@@ -2,6 +2,8 @@ const ChordDiagram = (() => {
     let svg, tooltip;
     let allData;
 
+    const getVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
     const initialize = (data) => {
         allData = data;
         tooltip = d3.select('#chord-tooltip');
@@ -50,6 +52,13 @@ const ChordDiagram = (() => {
     };
 
     const render = () => {
+        const textColor = getVar('--text-primary') || '#1a1a2e';
+        const mutedColor = getVar('--text-secondary') || '#555570';
+        const arcStroke = 'rgba(0,0,0,0.12)';
+        const arcStrokeHover = 'rgba(0,0,0,0.35)';
+        const blendMode = 'multiply';
+        const fillOpacity = 0.4;
+
         const container = document.getElementById('chord-container');
         const rect = container ? container.getBoundingClientRect() : { width: 900, height: 700 };
         const width = rect.width || 900;
@@ -92,24 +101,24 @@ const ChordDiagram = (() => {
 
         group.append('path')
             .attr('fill', d => colors(d.index))
-            .attr('stroke', 'rgba(255,255,255,0.15)')
+            .attr('stroke', arcStroke)
             .attr('stroke-width', 1)
             .attr('d', arc)
             .on('mouseenter', function (event, d) {
-                d3.select(this).attr('stroke', 'rgba(255,255,255,0.6)');
+                d3.select(this).attr('stroke', arcStrokeHover);
                 showTooltip(event, `${names[d.index]} — ${Math.round(d3.sum(chords, c =>
                     (c.source.index === d.index) * c.source.value + (c.target.index === d.index) * c.source.value))} co-occurrences`);
             })
             .on('mousemove', moveTooltip)
             .on('mouseleave', function () {
-                d3.select(this).attr('stroke', 'rgba(255,255,255,0.15)');
+                d3.select(this).attr('stroke', arcStroke);
                 hideTooltip();
             });
 
         group.append('text')
             .each(d => (d.angle = (d.startAngle + d.endAngle) / 2))
             .attr('dy', '0.35em')
-            .attr('fill', '#e8e8f0')
+            .attr('fill', textColor)
             .attr('font-family', 'Outfit, sans-serif')
             .attr('font-size', '11px')
             .attr('font-weight', '600')
@@ -122,11 +131,11 @@ const ChordDiagram = (() => {
             .text(d => names[d.index]);
 
         g.append('g')
-            .attr('fill-opacity', 0.6)
+            .attr('fill-opacity', fillOpacity)
             .selectAll('path')
             .data(chords)
             .join('path')
-            .style('mix-blend-mode', 'screen')
+            .style('mix-blend-mode', blendMode)
             .attr('fill', d => colors(d.target.index))
             .attr('d', ribbon)
             .on('mouseenter', function (event, d) {
@@ -135,18 +144,11 @@ const ChordDiagram = (() => {
             })
             .on('mousemove', moveTooltip)
             .on('mouseleave', function () {
-                d3.select(this).attr('fill-opacity', 0.6);
+                d3.select(this).attr('fill-opacity', fillOpacity);
                 hideTooltip();
             });
 
-        g.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('y', -height / 2 + 30)
-            .attr('fill', '#9a9ab0')
-            .attr('font-family', 'Outfit, sans-serif')
-            .attr('font-size', '13px')
-            .attr('font-weight', '500')
-            .text('Character Co-occurrence in Events');
+
     };
 
     const showTooltip = (event, text) => {
@@ -165,7 +167,9 @@ const ChordDiagram = (() => {
         tooltip.style('display', 'none');
     };
 
-    const updateForTheme = () => {};
+    const updateForTheme = () => {
+        if (svg) render();
+    };
 
     return { initialize, updateForTheme };
 })();

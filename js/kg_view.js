@@ -228,7 +228,7 @@ const KGView = (() => {
             .data(visEdges, d => d.id)
             .enter().append('line')
             .attr('class', 'kg-edge')
-            .attr('stroke', d => REL_STYLES[d.relation]?.color || 'rgba(255,255,255,0.40)')
+            .attr('stroke', d => REL_STYLES[d.relation]?.color || 'rgba(0,0,0,0.20)')
             .attr('stroke-width', d => REL_STYLES[d.relation]?.width || 1)
             .attr('stroke-dasharray', d => REL_STYLES[d.relation]?.dash === 'none' ? null : REL_STYLES[d.relation]?.dash)
             .attr('marker-end', d => `url(#arrow-${d.relation})`)
@@ -333,7 +333,7 @@ const KGView = (() => {
         sel.append('circle').attr('r', r)
             .attr('fill', getWorldFill(d.world))
             .attr('fill-opacity', 0.95)
-            .attr('stroke', d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(255,255,255,0.4)')
+            .attr('stroke', d.death ? 'var(--death)' : d.importantTrigger ? 'var(--trigger)' : 'rgba(0,0,0,0.15)')
             .attr('stroke-width', (d.death || d.importantTrigger) ? 2 : 1.2);
 
         if (d.importantTrigger) {

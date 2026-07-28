@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="config/theme-toggle.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
@@ -55,14 +54,6 @@
                 <span class="tab-icon">◈</span><span class="tab-label">Timeline</span>
             </button>
         </nav>
-
-        <!-- Theme Toggle -->
-        <div class="theme-toggle">
-            <button class="theme-toggle-btn" id="theme-toggle-btn"
-                    title="Toggle theme" aria-label="Toggle theme">
-                <span class="theme-toggle-icon" data-icon=""></span>
-            </button>
-        </div>
 
         <!-- Temporal-only controls -->
         <div class="legend" id="temporal-legend" style="display:none">
@@ -358,9 +349,7 @@
 <script src="js/kg_search.js"></script>
 <script src="js/kg_pathfinder.js"></script>
 <script src="js/kg_view.js"></script>
-<!-- Theme system must load before main.js -->
 <script src="config/theme-config.js"></script>
-<script src="config/theme-toggle.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
