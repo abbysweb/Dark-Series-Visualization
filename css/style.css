@@ -1402,7 +1402,17 @@ body {
 }
 
 /* ==================================
-   ANALYTICS VIEW
+   
+/* Edge glow animation for important connections */
+@keyframes edge-pulse {
+    0%, 100% { stroke-opacity: 0.75; }
+    50% { stroke-opacity: 1; }
+}
+.edge-glow {
+    stroke-opacity: 0.85;
+    filter: drop-shadow(0 0 3px rgba(234,179,8,0.3));
+}">
+ANALYTICS VIEW
 ANALYTICS VIEW
    ========================================================================== */
 #view-analytics { position: relative; }

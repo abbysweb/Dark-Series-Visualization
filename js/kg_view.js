@@ -9,14 +9,14 @@ const KGView = (() => {
 
     // ── Constants ───────────────────────────────────────────────────────────
     const REL_STYLES = {
-        causes:            { color: 'rgba(0,0,0,0.55)', dash: 'none',    width: 1.8, label: 'causes' },
-        appears_in:        { color: 'rgba(37,99,235,0.55)', dash: '6,3',   width: 1.2, label: 'appears in' },
-        occurs_in:         { color: 'rgba(234,88,12,0.5)',  dash: '3,4',   width: 1.2, label: 'occurs in' },
-        occurs_at:         { color: 'rgba(107,114,128,0.4)',dash: '2,5',   width: 0.9, label: 'occurs at' },
-        same_person_as:    { color: 'rgba(147,51,234,0.7)',  dash: '6,3',   width: 2.2, label: 'same person' },
-        co_present_with:   { color: 'rgba(22,163,74,0.4)',   dash: '3,4',   width: 0.9, label: 'co-present' },
-        triggers_death_of: { color: 'rgba(220,38,38,0.7)',   dash: 'none',  width: 2,   label: 'triggers death' },
-        important_trigger_for: { color: 'rgba(202,138,4,0.6)', dash: 'none', width: 1.8, label: 'important trigger' }
+        causes:            { color: 'rgba(37,99,235,0.7)',  dash: 'none',    width: 2,   label: 'causes' },
+        appears_in:        { color: 'rgba(59,130,246,0.65)', dash: '6,3',   width: 1.4, label: 'appears in' },
+        occurs_in:         { color: 'rgba(249,115,22,0.65)', dash: '3,4',   width: 1.4, label: 'occurs in' },
+        occurs_at:         { color: 'rgba(100,116,139,0.5)',dash: '2,5',   width: 1,   label: 'occurs at' },
+        same_person_as:    { color: 'rgba(168,85,247,0.75)', dash: '6,3', width: 2.4, label: 'same person' },
+        co_present_with:   { color: 'rgba(16,185,129,0.55)', dash: '3,4', width: 1,   label: 'co-present' },
+        triggers_death_of: { color: 'rgba(239,68,68,0.8)',   dash: 'none',  width: 2.2, label: 'triggers death' },
+        important_trigger_for: { color: 'rgba(234,179,8,0.75)', dash: 'none', width: 2, label: 'important trigger' }
     };
 
     const WORLD_FILL = {
@@ -101,13 +101,24 @@ const KGView = (() => {
             defs.append('marker')
                 .attr('id', `arrow-${rel}`)
                 .attr('viewBox', '0 -4 8 8')
-                .attr('refX', 18).attr('refY', 0)
-                .attr('markerWidth', 5).attr('markerHeight', 5)
+                .attr('refX', 20).attr('refY', 0)
+                .attr('markerWidth', 8).attr('markerHeight', 8)
                 .attr('orient', 'auto')
                 .append('path')
-                .attr('d', 'M0,-4L8,0L0,4')
+                .attr('d', 'M0,-5L10,0L0,5L3,0Z')
                 .attr('fill', style.color);
         });
+// Edge glow filter for modern arrow look
+        const edgeGlowFilter = defs.append('filter')
+            .attr('id', 'edge-glow')
+            .attr('x', '-30%').attr('y', '-30%').attr('width', '160%').attr('height', '160%');
+        edgeGlowFilter.append('feGaussianBlur')
+            .attr('stdDeviation', '2')
+            .attr('result', 'coloredBlur');
+        const edgeMerge = edgeGlowFilter.append('feMerge');
+        edgeMerge.append('feMergeNode').attr('in', 'coloredBlur');
+        edgeMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
         // Glow filter for highlighted nodes
        const filter = defs.append('filter').attr('id', 'glow');
         filter.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'coloredBlur');
@@ -218,10 +229,10 @@ const KGView = (() => {
             .attr('stroke-dasharray', d => REL_STYLES[d.relation]?.dash === 'none' ? null : REL_STYLES[d.relation]?.dash)
             .attr('marker-end', d => `url(#arrow-${d.relation})`)
             .attr('opacity', d => {
-            if (d.relation === 'causes') return 0.7;
-            if (d.relation === 'same_person_as') return 0.75;
-            if (d.relation === 'triggers_death_of') return 0.8;
-            if (d.relation === 'important_trigger_for') return 0.65;
+            if (d.relation === 'causes') return 0.85;
+            if (d.relation === 'same_person_as') return 0.9;
+            if (d.relation === 'triggers_death_of') return 0.95;
+            if (d.relation === 'important_trigger_for') return 0.8;
             return 0.35;
         });
 
@@ -553,10 +564,10 @@ const collideR = (d) => {
         pathHighlightSet.clear();
         nodeSel?.attr('opacity', 1);
         edgeSel?.attr('opacity', d => {
-            if (d.relation === 'causes') return 0.7;
-            if (d.relation === 'same_person_as') return 0.75;
-            if (d.relation === 'triggers_death_of') return 0.8;
-            if (d.relation === 'important_trigger_for') return 0.65;
+            if (d.relation === 'causes') return 0.85;
+            if (d.relation === 'same_person_as') return 0.9;
+            if (d.relation === 'triggers_death_of') return 0.95;
+            if (d.relation === 'important_trigger_for') return 0.8;
             return 0.35;
         })
             .attr('stroke-width', e => REL_STYLES[e.relation]?.width || 1);
