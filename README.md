@@ -44,14 +44,14 @@ Summary dashboard showing 7 key stat cards (total events, characters, worlds, de
 ### Step 6 — Chord Diagram
 Character co-occurrence chord diagram. The top 14 most frequent characters are shown as arc segments around the circle. Ribbons between arcs represent events where both characters appear — thicker ribbons mean more co-occurrences. Hover over an arc to see total co-occurrences, or hover a ribbon for the specific pair count.
 
-![Chord Diagram](Screenshot/07-chord.png)
+![Chord Diagram](Screenshot/06-chord.png)
 
 ---
 
 ### Step 7 — Timeline
 Beeswarm-per-lane layout across World bands covering 1885--2056. Each row is a world (Jonas, Martha, Origin). Dots are events — click any dot to see details in the bottom detail panel. Filterable by character, event type, and world.
 
-![Timeline](Screenshot/06-timeline.png)
+![Timeline](Screenshot/07-timeline.png)
 
 ---
 

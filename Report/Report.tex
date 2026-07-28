@@ -12,8 +12,10 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{parskip}
+\usepackage{microtype}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\setlength{\headheight}{13.6pt}
 \fancyhf{}
 \rhead{Dark Series Visualization}
 \lhead{Technical Report}
@@ -62,10 +64,6 @@ This report documents the architecture, data model, implementation, and recent i
 
 \tableofcontents
 \newpage
-\section{Development Approach}
-
-This project was developed following a structured, iterative methodology that combined data modeling, iterative visualization design, and systematic bug fixing. The following subsections describe the key aspects of the development process.
-
 \section{Project Overview}
 
 The Dark Series Knowledge Graph Visualization is a single-page web application built with vanilla JavaScript and the D3.js library (v7). It loads two CSV datasets --- \texttt{Dark\_Events.csv} (approximately 340 events with character, world, and temporal annotations) and \texttt{Dark\_Edges.csv} (approximately 590 causal edges between events) --- and converts them into a unified Knowledge Graph (KG) comprising four entity types and eight typed, directed relations.
@@ -125,6 +123,7 @@ The application boots in a strict pipeline on \texttt{DOMContentLoaded}:
 Upon completion, the loading overlay is hidden and the Knowledge Graph view becomes active immediately. All other views are lazily initialized on first navigation.
 
 \section{Data Model}
+\label{sec:datamodel}
 
 \subsection{Knowledge Graph Schema}
 
@@ -181,6 +180,7 @@ This correctly links all Dark identity pairs: Jonas/Adam, Mikkel/Michael, Martha
 \centering
 \includegraphics[width=\textwidth]{../Screenshot/01-knowledge-graph.png}
 \caption{Knowledge Graph view showing typed nodes and causal edges}
+\label{fig:kg}
 \end{figure}
 
 The primary view renders a D3 force-directed graph with the following visual encodings:
@@ -221,6 +221,7 @@ The primary view renders a D3 force-directed graph with the following visual enc
 \centering
 \includegraphics[width=\textwidth]{../Screenshot/02-temporal.png}
 \caption{Temporal Graph with swimlanes and causal Bezier curves}
+\label{fig:temporal}
 \end{figure}
 
 Renders events as a sequence of temporal boxes with embedded swimlanes for Jonas, Martha, and Other characters. Smooth quadratic Bezier curves connect events across adjacent time boxes.
@@ -231,6 +232,7 @@ Renders events as a sequence of temporal boxes with embedded swimlanes for Jonas
 \centering
 \includegraphics[width=\textwidth]{../Screenshot/03-network.png}
 \caption{Force Network showing event interconnectedness via shared characters}
+\label{fig:network}
 \end{figure}
 
 An event-centric force layout linking events that share characters. Node size encodes importance (triggers = 10px, deaths = 9px, regular = 7px). Edge weight reflects the number of shared characters.
@@ -241,6 +243,7 @@ An event-centric force layout linking events that share characters. Node size en
 \centering
 \includegraphics[width=\textwidth]{../Screenshot/04-barchart.png}
 \caption{Bar Chart with configurable grouping and metrics}
+\label{fig:barchart}
 \end{figure}
 
 Grouped vertical bars with configurable grouping (year, world, top-25 characters) and metrics (total count, death events, or trigger events). Animated entry with D3 transitions.
@@ -249,8 +252,9 @@ Grouped vertical bars with configurable grouping (year, world, top-25 characters
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../Screenshot/07-chord.png}
+\includegraphics[width=\textwidth]{../Screenshot/06-chord.png}
 \caption{Chord Diagram showing character co-occurrence relationships}
+\label{fig:chord}
 \end{figure}
 
 A circular chord layout showing character co-occurrence across events. The top 14 most frequent characters are displayed as arc segments around the circumference. Coloured ribbons between arcs represent events where both characters appear together --- ribbon thickness is proportional to the co-occurrence count. The diagram uses D3's \texttt{d3.chord()} layout with \texttt{blendMode="multiply"} for correct colour compositing on the light theme background. Hovering an arc highlights all ribbons originating from that character and displays a tooltip with total co-occurrence count; hovering a specific ribbon shows the exact pair count. The chord diagram adds a character-centric relational perspective complementing the event- and time-oriented views.
@@ -261,12 +265,13 @@ A circular chord layout showing character co-occurrence across events. The top 1
 \centering
 \includegraphics[width=\textwidth]{../Screenshot/05-analytics.png}
 \caption{Analytics Dashboard with stat cards and distribution charts}
+\label{fig:analytics}
 \end{figure}
 
 The Analytics view provides a summary dashboard at the top showing seven key metrics rendered as stat cards: total number of events, total edges, distinct characters, distinct worlds, distinct years, death events, and important-trigger events. Below the stats bar, the main chart area renders a configurable visualization with four selectable metrics via a dropdown:
 \begin{itemize}[nosep]
     \item \textbf{Events by Year} --- a bar chart showing event density per year across the full 1885--2056 span. Tooltips display exact counts on hover.
-    \item \textbf{Edge Type Distribution} --- a donut chart of causal edge types (Normal, World Swap, Succesfull Time Travel, Failed Time Travel, Quantum Entanglement, Same Event, Inconclusive) using D3's \texttt{d3.pie} layout.
+    \item \textbf{Edge Type Distribution} --- a donut chart of causal edge types (Normal, World Swap, Successful Time Travel, Failed Time Travel, Quantum Entanglement, Same Event, Inconclusive) using D3's \texttt{d3.pie} layout.
     \item \textbf{Character Involvement} --- a horizontal bar chart of the top 20 most-active characters by event count.
     \item \textbf{Events by World} --- a bar chart showing event distribution across Jonas World, Martha World, and Origin World with world-specific color coding.
 \end{itemize}
@@ -276,8 +281,9 @@ All charts use animated D3 transitions for entry and update, with the same glass
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{../Screenshot/06-timeline.png}
+\includegraphics[width=\textwidth]{../Screenshot/07-timeline.png}
 \caption{Timeline with beeswarm layout across World bands}
+\label{fig:timeline}
 \end{figure}
 
 A horizontal beeswarm-per-lane layout with World bands (Jonas, Martha, Origin) spanning 1885--2056. Events are positioned along the X-axis by their year, with Y-offset jitter within each lane to prevent occlusion. Each dot is colour-coded by world. Clicking any event dot opens a detail panel at the bottom showing the event's description, associated characters, and causal links. The view is filterable by character, event type, and world through the sidebar controls.
@@ -313,19 +319,6 @@ Renders a rich detail panel for any clicked node. For characters, it displays: i
 
 The following improvements were implemented during the code review and refactoring phase:
 
-\subsection{Bug Fix: Identity Detection}
-\label{sec:identityfix}
-\textbf{File:} \texttt{kg\_builder.js} (lines 116--140)
-
-\textbf{Problem:} The original \texttt{same\_person\_as} edge detection used exact string matching of the full name part after splitting by \texttt{/}. This failed for all Dark dual-identity pairs whose name components differ (e.g., \texttt{Jonas Kahnwald / Adam (J)} vs.\ \texttt{Mikkel Nielsen / Michael Kahnwald (J)}).
-
-\textbf{Fix:} Replaced with a two-tier matching algorithm:
-\begin{enumerate}[nosep]
-    \item Strip world-market tags \texttt{(J)}, \texttt{(M)}, \texttt{(O)} from candidate names.
-    \item If the stripped names are identical (e.g., \texttt{Charlotte Doppler}), connect them.
-    \item If both names contain \texttt{/}, extract all words and connect if any word overlaps (this safely works because \texttt{/} notation is exclusive to dual-identity characters in the dataset).
-\end{enumerate}
-
 \subsection{Bug Fix: D3 Edge Mutation Protection}
 \label{sec:mutationfix}
 \textbf{Files:} \texttt{kg\_builder.js}, \texttt{kg\_view.js}, \texttt{kg\_inspector.js}
@@ -339,9 +332,6 @@ The Knowledge Graph now includes an eighth relation type, \texttt{important\_tri
 
 \subsection{Architecture: Separate \texttt{kg\_pathfinder.js} Module}
 The BFS shortest-path algorithm was extracted from \texttt{kg\_builder.js} into a dedicated \texttt{kg\_pathfinder.js} module (17 lines). This improves separation of concerns, makes pathfinding independently testable, and aligns with the layered architecture proposed in the original implementation plan. \texttt{kg\_view.js} now calls \texttt{KGPathfinder.shortestPath()} instead of \texttt{KGBuilder.shortestPath()}.
-
-\subsection{Feature Addition: Chord Dependency Diagram}
-A seventh visualization view was added --- a circular chord diagram (\texttt{chord.js}) showing character co-occurrence across events. The module builds a symmetric co-occurrence matrix from the event--character adjacency data, retains the top 14 most frequent characters, and renders the result using D3's \texttt{d3.chord()} layout. Directed ribbons distinguish source and target arcs, and a hover interaction provides detailed co-occurrence counts. The diagram uses CSS custom properties for colour theming and applies \texttt{blendMode="multiply"} for correct compositing on the light background. This view fills a relational gap not addressed by the existing event- and timeline-oriented views.
 
 \subsection{UI Redesign: Glassmorphic Theme}
 The entire user interface was redesigned with a glassmorphic aesthetic. All panels, sidebars, toolbars, buttons, and tooltips now use semi-transparent backgrounds with \texttt{backdrop-filter: blur()} and subtle border highlights (\texttt{rgba(255,255,255,0.3)}), creating a frosted-glass effect. The colour scheme is exclusively light-themed: dark theme was removed entirely (\texttt{theme-toggle.js} and \texttt{theme-toggle.css} deleted; \texttt{theme-config.js} defaults to \texttt{"light"} and its toggle function is a no-op). All graph strokes --- KG edges, network links, arrow markers, node outlines --- were changed from white-based RGBA to black-based RGBA (\texttt{rgba(0,0,0,0.15)} to \texttt{rgba(0,0,0,0.25)}) to remain visible on the light background. Sidebar section fonts, padding, and dot sizes were increased approximately 40\% for improved readability. The redesign is fully contained in \texttt{css/style.css} with no external dependencies.
@@ -361,6 +351,36 @@ The entire user interface was redesigned with a glassmorphic aesthetic. All pane
     \item Chord ribbon and arc strokes: changed to use CSS custom properties (\texttt{--text-primary}) for automatic theme adaptation.
 \end{itemize}
 
+\section{Development Process}
+
+\subsection{Data Pipeline}
+The development began with a thorough analysis of the two source CSV files. \texttt{Dark\_Events.csv} contains approximately 340 event records with fields for ID, World, Date, Important Trigger flag, Death flag, Description, and a comma-separated Characters field. \texttt{Dark\_Edges.csv} contains approximately 590 directed edges with Source, Target, Type, and Description columns. The \texttt{data\_parser.js} module was the first component implemented, responsible for loading both CSVs via \texttt{d3.csv()}, normalizing field names (e.g., \texttt{Important\_Trigger} → \texttt{importantTrigger}), and computing derived metadata such as time ranges, character appearance counts, and cross-time-range edges. All data is stored as plain JavaScript objects and shared across modules via the global \texttt{ViewManager}.
+
+\subsection{Architecture Decisions}
+The application uses a \textbf{modular Revealing Module Pattern} (IIFE) for each JavaScript component, ensuring private state encapsulation while exposing only necessary public APIs. This pattern was chosen over ES6 classes or ES modules because the project has no build step and must run as static files on any HTTP server. All views share the same underlying data objects (\texttt{sharedData} and \texttt{sharedKG}), which are created once at boot time and passed to each view's initializer function. This approach ensures consistency across views while avoiding redundant data loading.
+
+\subsection{Knowledge Graph Construction}
+The KG was built as the central data abstraction layer. The \texttt{KGBuilder} module converts the flat event-and-edge CSV data into a typed graph with explicit node and edge objects. The identity detection algorithm (described in Section~\ref{sec:datamodel}) matches \texttt{same\_person\_as} pairs by stripping world-market tags and checking for word-level name overlap. The D3 mutation protection fix (detailed in Section~\ref{sec:mutationfix}) stores persistent \texttt{sourceId} and \texttt{targetId} strings to avoid reliance on D3-mutated link properties.
+
+\subsection{Visualization Design}
+Each view was designed to serve a distinct analytical purpose:
+\begin{itemize}[nosep]
+    \item The \textbf{Knowledge Graph} is the primary exploration view, designed for discovering direct relationships between any entities. Node shapes (diamond, circle, hexagon, pill) and edge dash patterns provide immediate visual encoding of entity and relation types.
+    \item The \textbf{Temporal Graph} makes seasonal and cyclical patterns visible through the swimlane metaphor, directly inspired by the series' 33-year cycle structure.
+    \item The \textbf{Force Network} reveals which events are most interconnected through character co-occurrence, useful for identifying hub events.
+    \item The \textbf{Bar Chart} provides quantitative comparison across categorical dimensions for quick statistical overviews.
+    \item The \textbf{Chord Diagram} reveals character co-occurrence patterns through a circular layout, highlighting which character pairs appear together most frequently across events.
+    \item The \textbf{Analytics Dashboard} was added as a summary view combining key metrics with four chart types (events-by-year bars, edge-type donut, top-20 character involvement, world distribution), giving users a bird's-eye view of the dataset before drilling into specific views.
+    \item The \textbf{Timeline} uses a beeswarm layout to maximize data density while avoiding occlusion, with strong X-axis pinning preserving temporal order.
+\end{itemize}
+
+\subsection{Challenges and Solutions}
+\begin{enumerate}[nosep]
+    \item \textbf{D3 simulation interference with data integrity}: As noted in Section~\ref{sec:mutationfix}, D3 mutates link objects in-place. The solution was to store immutable source/target IDs separately, which also cleaned up 22 redundant \texttt{typeof} checks.
+    \item \textbf{Performance with 800+ nodes and 2000+ edges}: The KG force simulation uses type-specific charge strengths (World nodes repel strongly, Characters moderately, Events/TimePeriods weakly) and clustering forces to keep the graph readable. Filter re-renders are full rebuilds rather than incremental updates, which is acceptable for the current dataset size.
+    \item \textbf{Cross-world identity mapping}: Characters with the same name but different world tags (e.g., \texttt{Charlotte Doppler (M)} vs.\ \texttt{Charlotte Doppler (J)}) needed explicit linking. This was solved during the same\_person\_as rewrite by matching names after tag stripping.
+\end{enumerate}
+
 \section{How to Run}
 
 \begin{enumerate}[nosep]
@@ -377,39 +397,27 @@ The entire user interface was redesigned with a glassmorphic aesthetic. All pane
     \item The application loads data from \texttt{data/} via XHR; a local server is required (file:// protocol will not work).
 \end{enumerate}
 
-\section{Development Process}
-
-\subsection{Data Pipeline}
-The development began with a thorough analysis of the two source CSV files. \texttt{Dark\_Events.csv} contains approximately 340 event records with fields for ID, World, Date, Important Trigger flag, Death flag, Description, and a comma-separated Characters field. \texttt{Dark\_Edges.csv} contains approximately 590 directed edges with Source, Target, Type, and Description columns. The \texttt{data\_parser.js} module was the first component implemented, responsible for loading both CSVs via \texttt{d3.csv()}, normalizing field names (e.g., \texttt{Important\_Trigger} → \texttt{importantTrigger}), and computing derived metadata such as time ranges, character appearance counts, and cross-time-range edges. All data is stored as plain JavaScript objects and shared across modules via the global \texttt{ViewManager}.
-
-\subsection{Architecture Decisions}
-The application uses a \textbf{modular Revealing Module Pattern} (IIFE) for each JavaScript component, ensuring private state encapsulation while exposing only necessary public APIs. This pattern was chosen over ES6 classes or ES modules because the project has no build step and must run as static files on any HTTP server. All views share the same underlying data objects (\texttt{sharedData} and \texttt{sharedKG}), which are created once at boot time and passed to each view's initializer function. This approach ensures consistency across views while avoiding redundant data loading.
-
-\subsection{Knowledge Graph Construction}
-The KG was built as the central data abstraction layer. The \texttt{KGBuilder} module converts the flat event-and-edge CSV data into a typed graph with explicit node and edge objects. The most challenging aspect was the \texttt{same\_person\_as} identity detection. The initial implementation used exact string matching of name components separated by slashes, which failed for all dual-identity pairs in the Dark universe (Jonas/Adam, Mikkel/Michael, Martha/Eve) because their first names differ while their surnames are shared. This was corrected by implementing a two-tier matching algorithm that (1) normalizes names by stripping world-market tags and (2) checks for word-level overlap between \texttt{/}-separated identity pairs. This fix correctly connected all identity-linked characters.
-
-Another significant improvement was protecting the edge data structure from D3's force simulation, which mutates \texttt{source} and \texttt{target} properties from strings to node object references after the first simulation tick. By storing persistent \texttt{sourceId} and \texttt{targetId} string properties alongside D3's mutated \texttt{source} and \texttt{target}, all downstream code can reliably reference edge endpoints without fragile type-checking guards.
-
-\subsection{Visualization Design}
-Each view was designed to serve a distinct analytical purpose:
-\begin{itemize}[nosep]
-    \item The \textbf{Knowledge Graph} is the primary exploration view, designed for discovering direct relationships between any entities. Node shapes (diamond, circle, hexagon, pill) and edge dash patterns provide immediate visual encoding of entity and relation types.
-    \item The \textbf{Temporal Graph} makes seasonal and cyclical patterns visible through the swimlane metaphor, directly inspired by the series' 33-year cycle structure.
-    \item The \textbf{Force Network} reveals which events are most interconnected through character co-occurrence, useful for identifying hub events.
-    \item The \textbf{Bar Chart} provides quantitative comparison across categorical dimensions for quick statistical overviews.
-    \item The \textbf{Analytics Dashboard} was added as a summary view combining key metrics with four chart types (events-by-year bars, edge-type donut, top-20 character involvement, world distribution), giving users a bird's-eye view of the dataset before drilling into specific views.
-    \item The \textbf{Timeline} uses a beeswarm layout to maximize data density while avoiding occlusion, with strong X-axis pinning preserving temporal order.
-\end{itemize}
-
-\subsection{Challenges and Solutions}
-\begin{enumerate}[nosep]
-    \item \textbf{D3 simulation interference with data integrity}: As noted in Section~\ref{sec:mutationfix}, D3 mutates link objects in-place. The solution was to store immutable source/target IDs separately, which also cleaned up 22 redundant \texttt{typeof} checks.
-    \item \textbf{Performance with 800+ nodes and 2000+ edges}: The KG force simulation uses type-specific charge strengths (World nodes repel strongly, Characters moderately, Events/TimePeriods weakly) and clustering forces to keep the graph readable. Filter re-renders are full rebuilds rather than incremental updates, which is acceptable for the current dataset size.
-    \item \textbf{Cross-world identity mapping}: Characters with the same name but different world tags (e.g., \texttt{Charlotte Doppler (M)} vs.\ \texttt{Charlotte Doppler (J)}) needed explicit linking. This was solved during the same\_person\_as rewrite by matching names after tag stripping.
-\end{enumerate}
-
 \section{Conclusion}
 
 The Dark Series Knowledge Graph Visualization successfully transforms flat CSV data into a rich, interactive graph exploration experience. The Knowledge Graph serves as a unified data backbone for seven distinct visualization views including an Analytics dashboard, enabling users to explore character relationships, causal chains, and temporal patterns of the series from multiple complementary perspectives. The improvements documented in this report --- identity detection fix, D3 mutation protection, the \texttt{important\_trigger\_for} relation type, and the pathfinding module extraction --- collectively improve correctness, robustness, and maintainability of the codebase.
+
+\begin{thebibliography}{99}
+
+\bibitem{d3}
+Mike Bostock,
+\textit{D3.js -- Data-Driven Documents},
+\url{https://d3js.org/}
+
+\bibitem{dark}
+Baran bo Odar \& Jantje Friese,
+\textit{Dark} (TV series, 2017--2020),
+Netflix.
+
+\bibitem{chord}
+M. Bostock,
+\textit{D3 Chord Diagram},
+Observable, \url{https://observablehq.com/@d3/chord-diagram}
+
+\end{thebibliography}
 
 \end{document}

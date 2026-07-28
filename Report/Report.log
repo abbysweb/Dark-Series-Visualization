@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.28)  28 JUL 2026 15:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.28)  28 JUL 2026 15:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -331,26 +331,55 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (C:\Program Files\MiKTeX\tex/latex/parskip\parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 )
+(C:\Program Files\MiKTeX\tex/latex/microtype\microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+\MT@toks=\toks25
+\MT@tempbox=\box58
+\MT@count=\count313
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks26
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen181
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count314
+
+(C:\Program Files\MiKTeX\tex/latex/microtype\microtype-pdftex.def
+File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 944.
+LaTeX Info: Redefining \lslig on input line 944.
+\MT@outer@space=\skip53
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(C:\Program Files\MiKTeX\tex/latex/microtype\microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
 (C:\Program Files\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 
-\f@nch@headwidth=\skip53
-\f@nch@offset@elh=\skip54
-\f@nch@offset@erh=\skip55
-\f@nch@offset@olh=\skip56
-\f@nch@offset@orh=\skip57
-\f@nch@offset@elf=\skip58
-\f@nch@offset@erf=\skip59
-\f@nch@offset@olf=\skip60
-\f@nch@offset@orf=\skip61
-\f@nch@height=\skip62
-\f@nch@footalignment=\skip63
-\f@nch@widthL=\skip64
-\f@nch@widthC=\skip65
-\f@nch@widthR=\skip66
-\@temptokenb=\toks25
+\f@nch@headwidth=\skip54
+\f@nch@offset@elh=\skip55
+\f@nch@offset@erh=\skip56
+\f@nch@offset@olh=\skip57
+\f@nch@offset@orh=\skip58
+\f@nch@offset@elf=\skip59
+\f@nch@offset@erf=\skip60
+\f@nch@offset@olf=\skip61
+\f@nch@offset@orf=\skip62
+\f@nch@height=\skip63
+\f@nch@footalignment=\skip64
+\f@nch@widthL=\skip65
+\f@nch@widthC=\skip66
+\f@nch@widthR=\skip67
+\@temptokenb=\toks27
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 56
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 58
 .
 
 (C:\Program Files\MiKTeX\tex/latex/lm\t1lmr.fd
@@ -358,28 +387,28 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count313
+\l__color_backend_stack_int=\count315
 ) (Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -397,7 +426,7 @@ LaTeX Font Info:    ... okay on input line 56.
 * \oddsidemargin=-1.1381pt
 * \evensidemargin=-1.1381pt
 * \topmargin=-38.1381pt
-* \headheight=12.0pt
+* \headheight=13.6pt
 * \headsep=25.0pt
 * \topskip=11.0pt
 * \footskip=30.0pt
@@ -416,17 +445,17 @@ LaTeX Font Info:    ... okay on input line 56.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count314
-\scratchdimen=\dimen181
-\scratchbox=\box58
-\nofMPsegments=\count315
-\nofMParguments=\count316
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count317
-\MPscratchDim=\dimen182
-\MPnumerator=\count318
-\makeMPintoPDFobject=\count319
-\everyMPtoPDFconversion=\toks27
+\scratchcounter=\count316
+\scratchdimen=\dimen182
+\scratchbox=\box59
+\nofMPsegments=\count317
+\nofMParguments=\count318
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count319
+\MPscratchDim=\dimen183
+\MPnumerator=\count320
+\makeMPintoPDFobject=\count321
+\everyMPtoPDFconversion=\toks29
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -435,50 +464,77 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count320
-Package hyperref Info: Link coloring OFF on input line 56.
+\c@lstlisting=\count322
+Package hyperref Info: Link coloring OFF on input line 58.
  (Report.out)
 (Report.out)
 \@outlinefile=\write3
 \openout3 = `Report.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
-8.
- (C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd
+LaTeX Info: Redefining \microtypecontext on input line 58.
+Package microtype Info: Applying patch `item' on input line 58.
+Package microtype Info: Applying patch `toc' on input line 58.
+Package microtype Info: Applying patch `eqnum' on input line 58.
+Package microtype Info: Applying patch `footnote' on input line 58.
+Package microtype Info: Applying patch `verbatim' on input line 58.
+LaTeX Info: Redefining \microtypesetup on input line 58.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+ (C:\Program Files\MiKTeX\tex/latex/microtype\mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
+0.
+
+(C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-8.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
+0.
 
 (C:\Program Files\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-58.
+60.
 
 (C:\Program Files\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-58.
+60.
 
 (C:\Program Files\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 58.
+(Font)              <12> on input line 60.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 58.
+(Font)              <8> on input line 60.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 58.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-8.
+(Font)              <6> on input line 60.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
+0.
 
 (C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (Report.toc
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ (Report.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 4.
+(Font)              <10.95> on input line 3.
  [1
 
 {C:/Users/PC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program Files
@@ -486,231 +542,134 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write4
 \openout4 = `Report.toc'.
 
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[2]
-Overfull \hbox (5.29385pt too wide) in paragraph at lines 71--72
-\T1/lmr/m/n/10.95 (ap-prox-i-mately 340 events with char-ac-ter, world, and tem
--po-ral an-no-ta-tions) and \T1/lmtt/m/n/10.95 Dark_Edges.csv
+ [2] [3]
+Overfull \hbox (12.02092pt too wide) in paragraph at lines 173--174
+\T1/lmr/m/n/10.95 (-20) This cor-rectly links all Dark iden-tity pairs: Jonas/A
+dam, Mikkel/Michael, Martha/Eve, Noah/Hanno
  []
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[3]
-Overfull \hbox (21.44759pt too wide) in paragraph at lines 174--175
-\T1/lmr/m/n/10.95 This cor-rectly links all Dark iden-tity pairs: Jonas/Adam, M
-ikkel/Michael, Martha/Eve, Noah/Hanno
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[4{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 178.
-<../Screenshot/01-knowledge-graph.png, id=230, 1927.2pt x 1084.05pt>
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 177.
+<../Screenshot/01-knowledge-graph.png, id=207, 1927.2pt x 1084.05pt>
 File: ../Screenshot/01-knowledge-graph.png Graphic file (type png)
 <use ../Screenshot/01-knowledge-graph.png>
 Package pdftex.def Info: ../Screenshot/01-knowledge-graph.png  used on input li
-ne 182.
+ne 181.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+[4{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 90.
 
 (C:\Program Files\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[5
+) [5
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.206 \end{itemize}
-                   {C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <../
-Screenshot/01-knowledge-graph.png (PNG copy)>]
-<../Screenshot/02-temporal.png, id=239, 1927.2pt x 1084.05pt>
+l.212     \item \textbf
+                       {Drag node}: Freely repositions with stable simulatio...
+{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <../Screenshot/01-knowl
+edge-graph.png (PNG copy)>]
+<../Screenshot/02-temporal.png, id=224, 1927.2pt x 1084.05pt>
 File: ../Screenshot/02-temporal.png Graphic file (type png)
 <use ../Screenshot/02-temporal.png>
 Package pdftex.def Info: ../Screenshot/02-temporal.png  used on input line 222.
 
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-<../Screenshot/03-network.png, id=240, 1927.2pt x 1084.05pt>
+<../Screenshot/03-network.png, id=225, 1927.2pt x 1084.05pt>
 File: ../Screenshot/03-network.png Graphic file (type png)
 <use ../Screenshot/03-network.png>
-Package pdftex.def Info: ../Screenshot/03-network.png  used on input line 232.
+Package pdftex.def Info: ../Screenshot/03-network.png  used on input line 233.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[6
+ [6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.235 
+l.237 
        <../Screenshot/02-temporal.png (PNG copy)>]
-<../Screenshot/04-barchart.png, id=246, 1927.2pt x 1084.05pt>
+<../Screenshot/04-barchart.png, id=231, 1927.2pt x 1084.05pt>
 File: ../Screenshot/04-barchart.png Graphic file (type png)
 <use ../Screenshot/04-barchart.png>
-Package pdftex.def Info: ../Screenshot/04-barchart.png  used on input line 242.
+Package pdftex.def Info: ../Screenshot/04-barchart.png  used on input line 244.
 
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[7
+ [7
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.245 
+l.248 
        <../Screenshot/03-network.png (PNG copy)>]
-<../Screenshot/07-chord.png, id=253, 1927.2pt x 1084.05pt>
-File: ../Screenshot/07-chord.png Graphic file (type png)
-<use ../Screenshot/07-chord.png>
-Package pdftex.def Info: ../Screenshot/07-chord.png  used on input line 252.
+<../Screenshot/06-chord.png, id=238, 1927.2pt x 1084.05pt>
+File: ../Screenshot/06-chord.png Graphic file (type png)
+<use ../Screenshot/06-chord.png>
+Package pdftex.def Info: ../Screenshot/06-chord.png  used on input line 255.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[8
+ [8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.257 
+l.261 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.257 
-       <../Screenshot/04-barchart.png (PNG copy)> <../Screenshot/07-chord.png (
+l.261 
+       <../Screenshot/04-barchart.png (PNG copy)> <../Screenshot/06-chord.png (
 PNG copy)>]
-<../Screenshot/05-analytics.png, id=260, 1927.2pt x 1084.05pt>
+<../Screenshot/05-analytics.png, id=245, 1927.2pt x 1084.05pt>
 File: ../Screenshot/05-analytics.png Graphic file (type png)
 <use ../Screenshot/05-analytics.png>
-Package pdftex.def Info: ../Screenshot/05-analytics.png  used on input line 262
+Package pdftex.def Info: ../Screenshot/05-analytics.png  used on input line 266
 .
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-<../Screenshot/06-timeline.png, id=261, 1927.2pt x 1084.05pt>
-File: ../Screenshot/06-timeline.png Graphic file (type png)
-<use ../Screenshot/06-timeline.png>
-Package pdftex.def Info: ../Screenshot/06-timeline.png  used on input line 279.
+<../Screenshot/07-timeline.png, id=246, 1927.2pt x 1084.05pt>
+File: ../Screenshot/07-timeline.png Graphic file (type png)
+<use ../Screenshot/07-timeline.png>
+Package pdftex.def Info: ../Screenshot/07-timeline.png  used on input line 284.
 
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[9
+ [9
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.282 
-       <../Screenshot/05-analytics.png (PNG copy)>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[10
+l.288 
+       <../Screenshot/05-analytics.png (PNG copy)>] [10
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.307 
-       <../Screenshot/06-timeline.png (PNG copy)>]
-Overfull \hbox (41.87367pt too wide) in paragraph at lines 341--342
-\T1/lmr/m/n/10.95 The BFS shortest-path al-go-rithm was ex-tracted from \T1/lmt
-t/m/n/10.95 kg_builder.js \T1/lmr/m/n/10.95 into a ded-i-cated \T1/lmtt/m/n/10.
-95 kg_pathfinder.js
+l.313 
+       <../Screenshot/07-timeline.png (PNG copy)>]
+Overfull \hbox (35.39624pt too wide) in paragraph at lines 334--335
+\T1/lmr/m/n/10.95 (-20) The BFS shortest-path al-go-rithm was ex-tracted from \
+T1/lmtt/m/n/10.95 kg_builder.js \T1/lmr/m/n/10.95 (-20) into a ded-i-cated \T1/
+lmtt/m/n/10.95 kg_pathfinder.js
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[11]
-Overfull \hbox (11.86423pt too wide) in paragraph at lines 347--348
-\T1/lmr/m/n/10.95 The colour scheme is ex-clu-sively light-themed: dark theme w
-as re-moved en-tirely (\T1/lmtt/m/n/10.95 theme-toggle.js
+Overfull \hbox (4.38179pt too wide) in paragraph at lines 337--338
+\T1/lmr/m/n/10.95 (-20) The colour scheme is ex-clu-sively light-themed: dark t
+heme was re-moved en-tirely (\T1/lmtt/m/n/10.95 theme-toggle.js
  []
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[12]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+[11] [12]
+Overfull \hbox (25.34868pt too wide) in paragraph at lines 380--381
+\T1/lmr/m/n/10.95 (-20) specific charge strengths (World nodes re-pel strongly,
+ Char-ac-ters mod-er-ately, Events/TimePeriods
+ []
 
 [13]
-Overfull \hbox (34.19066pt too wide) in paragraph at lines 407--408
-\T1/lmr/m/n/10.95 specific charge strengths (World nodes re-pel strongly, Char-
-ac-ters mod-er-ately, Events/TimePeriods
+Underfull \hbox (badness 5064) in paragraph at lines 417--420
+[]\T1/lmr/m/n/10.95 (+20) M. Bo-stock, \T1/lmr/m/it/10.95 (+20) D3 Chord Di-a-g
+ram\T1/lmr/m/n/10.95 (+20) , Ob-serv-able, []$\T1/lmtt/m/n/10.95 https : / / ob
+servablehq . com / @d3 /
  []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [14] (Report.aux)
  ***********
@@ -718,16 +677,16 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 1D875C60B19099B19D758E3E0640FB89;7188.
+(rerunfilecheck)             Checksum: 0AFFE218F61064BECACFD9E2567B011C;6558.
  ) 
 Here is how much of TeX's memory you used:
- 12477 strings out of 467871
- 190724 string characters out of 5428452
- 635946 words of memory out of 5000000
- 41104 multiletter control sequences out of 15000+600000
- 689548 words of font info for 74 fonts, out of 8000000 for 9000
+ 14560 strings out of 467871
+ 227049 string characters out of 5428452
+ 718939 words of memory out of 5000000
+ 43017 multiletter control sequences out of 15000+600000
+ 696671 words of font info for 154 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,79p,1004b,2063s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,1005b,1294s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
 lic/lm/lmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/P
@@ -736,9 +695,9 @@ ts/type1/public/lm/lmri10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lm
 sy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Program 
 Files/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX/fonts/ty
 pe1/public/lm/lmtt9.pfb>
-Output written on Report.pdf (14 pages, 2149706 bytes).
+Output written on Report.pdf (14 pages, 2151190 bytes).
 PDF statistics:
- 382 PDF objects out of 1000 (max. 8388607)
- 93 named destinations out of 1000 (max. 500000)
- 340 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 373 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 41276 words of extra memory for PDF output out of 42996 (max. 10000000)
 
